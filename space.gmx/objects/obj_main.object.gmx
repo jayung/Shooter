@@ -27,16 +27,20 @@
             <kind>1</kind>
             <string>/// On Create Main  
 
-
-// local Varaibles
-charX = 160;
-charY = 384;
+global.touchX = 0; //where do you touch the screen?
+global.isTouching = 0; //if 1 then player is touching screen
 charWidth = 11; //half of sprite width
-charPosSpeed = 25; //how fast it goes to touch location
-lasorHeightOffset = 8;
-touchX = 0; //where do you touch the screen?
 
-instance_create(charX, charY, obj_player);
+instance_create(0, 0, obj_player);
+
+// Enemy counter
+enemyCounter = 0; // how long the game has gone on dictates what enemy spawns
+
+
+global.playerScore = 0;
+//create light for score area
+playerLight = instance_create(5, 0, obj_light);
+playerLight.lightSize = 8;
 </string>
           </argument>
         </arguments>
@@ -60,26 +64,50 @@ instance_create(charX, charY, obj_player);
           <argument>
             <kind>1</kind>
             <string>/// Step Main
+
 if device_mouse_check_button(0, mb_left)
 {
-    touchX  = device_mouse_x(0) - charWidth;
-    instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor1);
+    global.touchX  = device_mouse_x(0) - charWidth;
+    global.isTouching = 1;
+} else {
+    global.isTouching = 0;
 }
-if (charX &lt; touchX ){
-    charX += charPosSpeed;
-} else if (charX &gt; touchX){
-    charX -= charPosSpeed;
-}
-if ( (charX - touchX) &lt; charPosSpeed ) &amp;&amp; ( (charX - touchX)  &gt; 0){
-    charX = touchX;
-} else if ( (charX - touchX) &gt; (-1*charPosSpeed) ) &amp;&amp; ( (charX - touchX)  &lt; 0){
-    charX = touchX;
+// Enemy Spawn Rate
+enemyCounter += 1; //add one to total counter
+if (enemyCounter % 120) == 0{
+    instance_create(10, -25, obj_enemy_1);
 }
 
 
-with (obj_player){
-    x = other.charX;
-}
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw phase
+draw_set_font(fnt_gameFont);
+draw_set_colour(c_aqua);
+draw_text(0, 0, "Score: " + string(global.playerScore));
+
 </string>
           </argument>
         </arguments>

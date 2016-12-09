@@ -25,28 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// On Create Main  
+            <string>// Enemy counter
+//enemyCounter = 0; // how long the game has gone on dictates what enemy spawns
 
-global.touchX = 0; //where do you touch the screen?
-global.isTouching = 0; //if 1 then player is touching screen
-charWidth = 11; //half of sprite width
-
-
-// We create our player object
-instance_create(0, 0, obj_player);
-
-
-// We will spawn a 'wave' object based on this global value.
-// When a wave completes it will call a new wave object.
-global.waveCounter = 1; // Setting to 1 triggers the first wave.
-// Create a controller to control the wave of enemies
-instance_create(0,0, obj_waveController);
-
-// our total score as a player
-global.playerScore = 0;
-//create light for score area
-playerLight = instance_create(5, 0, obj_light);
-playerLight.lightSize = 8;
 </string>
           </argument>
         </arguments>
@@ -69,51 +50,15 @@ playerLight.lightSize = 8;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Step Main
+            <string>if (global.waveCounter == 0){
 
-
-// If we are touching the screen, set global variables
-// Any logic from an object that has to deal with touching the screen 
-// Will actually be dealt with in that object, with if (.isTouching == 1)
-if device_mouse_check_button(0, mb_left)
-{
-    global.touchX  = device_mouse_x(0) - charWidth;
-    global.isTouching = 1;
-} else {
-    global.isTouching = 0;
+} else if (global.waveCounter == 1){
+    instance_create(0,0,obj_wave_1);
+    global.waveCounter = 0;
+} else  if (global.waveCounter == 2){
+    //instance_create(0,0,obj_wave_2);
+    global.waveCounter = 0;
 }
-
-
-
-
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Draw phase
-draw_set_font(fnt_gameFont);
-draw_set_colour(c_aqua);
-draw_text(0, 0, "Score: " + string(global.playerScore));
-
 </string>
           </argument>
         </arguments>

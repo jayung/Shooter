@@ -25,18 +25,25 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Health = 2;
-velocity = 2;
-enemyScore = 5;
+            <string>Health = 2; //How much damage until this unit is dead
+velocity = 2; // How fast does he move down the screen
+enemyScore = 5; // How many points is he worth
 
+// Create the enemy light
 enemyLight = instance_create(x, y, obj_lightRed);
+// How big is that light?
 enemyLight.lightSize = 4;
 
+// Counter used with Rate to fire lasors
 lasorCounter = 0;
 lasorFireRate = 60; // when counter gets to 60 you can fire again (1 frame)
 lasorHeightOffset = 8; //where to draw the lasor Y axis?
-charWidth = 11; //half of sprite width
 
+//half of sprite width. Since my sprite isn't perfect, I subtract one pixel
+charWidth = sprite_width / 2 - 1; 
+
+// We will use a general counter incase we do SINE movement.
+counter = 0;
 </string>
           </argument>
         </arguments>
@@ -86,8 +93,16 @@ with (enemyLight) {
           <argument>
             <kind>1</kind>
             <string>/// Step Enemy 1
+
+// We add a counter to every enemy object incase it is needed in movement.
+counter += 1;
+
+// Movement pattern here
+// In this movement pattern we add to the Y for a straight down movement
 y += velocity ;
 
+//Lighting
+// We set the light equal to the center of our sprite.
 enemyLight.x = x + (sprite_width/2);
 enemyLight.y = y + (sprite_height/2);
 
@@ -95,16 +110,20 @@ enemyLight.y = y + (sprite_height/2);
 if (Health &lt;= 0){
     instance_destroy();
 }
-
+// Fire the lasor if...
 if (lasorCounter == 0){
+        // Create a lasor instance
         instance_create(x + charWidth, y + lasorHeightOffset, obj_enemy_lasor1);
+        // Reset our lasorCounter to fire rate
         lasorCounter = lasorFireRate;
     }
     
-// Lasor Controller
+// Lasor Controller (Subtract 1 until 0 based on fire rate)
 if (lasorCounter &gt; 0){
     lasorCounter -= 1;
 }
+
+//  If out of bounds then..
 if (y &gt; 500){
     instance_destroy();
 }

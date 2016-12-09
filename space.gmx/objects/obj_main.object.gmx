@@ -65,6 +65,10 @@ playerLight.lightSize = 8;
             <kind>1</kind>
             <string>/// Step Main
 
+
+// If we are touching the screen, set global variables
+// Any logic from an object that has to deal with touching the screen 
+// Will actually be dealt with in that object, with if (.isTouching == 1)
 if device_mouse_check_button(0, mb_left)
 {
     global.touchX  = device_mouse_x(0) - charWidth;
@@ -75,7 +79,8 @@ if device_mouse_check_button(0, mb_left)
 // Enemy Spawn Rate
 enemyCounter += 1; //add one to total counter
 if (enemyCounter % 120) == 0{
-    instance_create(10, -25, obj_enemy_1);
+    instance_create(10, -25, obj_enemy_2);
+    instance_create(30, -25, obj_powerup_rate);
 }
 
 

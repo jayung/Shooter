@@ -33,6 +33,7 @@
     </objects>
     <objects name="enemy">
       <object>objects\obj_enemy_1</object>
+      <object>objects\obj_enemy_2</object>
       <object>objects\obj_enemy_lasor1</object>
     </objects>
     <object>objects\obj_powerup_rate</object>

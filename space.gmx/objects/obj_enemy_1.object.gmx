@@ -36,8 +36,8 @@ enemyLight.lightSize = 4;
 
 // Counter used with Rate to fire lasors
 lasorCounter = 0;
-lasorFireRate = 60; // when counter gets to 60 you can fire again (1 frame)
-lasorHeightOffset = 8; //where to draw the lasor Y axis?
+lasorFireRate = 60; // when counter gets to 60 you can fire again (1 second)
+lasorHeightOffset = 8; //where to draw the lasor Y axis? Adjust per sprite for visuals
 
 //half of sprite width. Since my sprite isn't perfect, I subtract one pixel
 charWidth = sprite_width / 2 - 1; 
@@ -98,8 +98,10 @@ with (enemyLight) {
 counter += 1;
 
 // Movement pattern here
+// ***************************** Move Pattern *************************************
 // In this movement pattern we add to the Y for a straight down movement
 y += velocity ;
+// ***************************** End Move Pattern *********************************
 
 //Lighting
 // We set the light equal to the center of our sprite.

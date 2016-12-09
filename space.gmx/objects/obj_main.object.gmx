@@ -76,6 +76,7 @@ if device_mouse_check_button(0, mb_left)
 enemyCounter += 1; //add one to total counter
 if (enemyCounter % 120) == 0{
     instance_create(10, -25, obj_enemy_1);
+    instance_create(30, -25, obj_powerup_rate);
 }
 
 

@@ -28,6 +28,8 @@
             <string>damage = 1;
 lasorLight = instance_create(x, y, obj_light);
 lasorLight.lightSize = 2;
+xDiff = 1;
+xStart = x;
 </string>
           </argument>
         </arguments>
@@ -76,8 +78,17 @@ lasorLight.lightSize = 2;
           <argument>
             <kind>1</kind>
             <string>///lasor 1 on step
-y -= 2;
+//y -= 2;
 
+transx = xStart - (xDiff*100);
+transy = -50;
+//point_distance(x1, y1, x2, y2);
+//y += (transy - y)/60;
+//x += (transx - x)/60;
+
+
+
+move_towards_point( transx, transy, 2 );
 lasorLight.x = x + (sprite_width / 2);
 lasorLight.y = y + (sprite_height /2 );
 
@@ -86,7 +97,7 @@ if (y &lt; -20){
 }
 
 
-
+image_angle = point_direction(x, y, transx, transy) + 90;
 </string>
           </argument>
         </arguments>

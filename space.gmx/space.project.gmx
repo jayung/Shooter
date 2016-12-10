@@ -11,6 +11,7 @@
     <sprite>sprites\spr_powerup_rate</sprite>
     <sprite>sprites\spr_enemy_1</sprite>
     <sprite>sprites\spr_lasor1</sprite>
+    <sprite>sprites\spr_light3</sprite>
     <sprite>sprites\spr_light</sprite>
   </sprites>
   <backgrounds name="background">

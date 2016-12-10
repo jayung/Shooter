@@ -83,15 +83,32 @@ surfScale = 1;
 draw_clear(c_black);
 
 
+var blendMode = bm_src_alpha;//bm_inv_src_color  ;
+var blendIntensity = 0.8;
+draw_enable_alphablend(true);
 
 with(obj_light)
 {   //bm_zero vs bm_src_color
+//bm_zero
+//bm_one
+    //bm_src_color
+    //bm_inv_src_color
+//bm_src_alpha
+//bm_inv_src_alpha
+//bm_dest_alpha
+//bm_inv_dest_alpha
+//bm_dest_color   
+//bm_inv_dest_color
+//bm_src_alpha_sat
     if (colorType == 0){
-        draw_set_blend_mode(bm_src_color);
-        draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
-    
+    //bm_src_color
+        //draw_set_blend_mode(blendMode);
+        //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),blendIntensity);
+     draw_set_blend_mode(bm_src_alpha);
+     draw_sprite_ext(spr_light3,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
+ draw_set_blend_mode(bm_normal);  
     } else if (colorType == 1){
-        draw_set_blend_mode(bm_zero);
+        draw_set_blend_mode(blendMode);
         draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 0, 0),1);
     
     }
@@ -101,14 +118,33 @@ with(obj_light)
 
 with(obj_lightBlue)
 {
- draw_set_blend_mode(bm_dest_color);
- draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(0, 0, 255),0.9);
+ //draw_set_blend_mode(blendMode);
+ //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(0, 0, 255),0.9);
+  draw_set_blend_mode(blendMode);
+ draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(0, 0, 255),1.0);
  draw_set_blend_mode(bm_normal);  
 }
 with(obj_lightRed)
 {
- draw_set_blend_mode(bm_dest_color);
- draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 0, 0),0.5);
+//bm_zero
+//bm_one
+//bm_src_color
+//bm_inv_src_color
+//bm_src_alpha
+//bm_inv_src_alpha
+//bm_dest_alpha
+//bm_inv_dest_alpha
+//bm_dest_color   
+//bm_inv_dest_color
+//bm_src_alpha_sat
+
+//bm_dest_color
+//bm_src_alpha
+
+
+ draw_set_blend_mode(blendMode);
+ draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 0, 0),0.33);
+
  draw_set_blend_mode(bm_normal);  
 }
 

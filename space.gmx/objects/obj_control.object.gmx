@@ -104,9 +104,9 @@ with(obj_light)
     //bm_src_color
         //draw_set_blend_mode(blendMode);
         //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),blendIntensity);
-     draw_set_blend_mode(bm_src_alpha);
+     draw_set_blend_mode(bm_src_color);
      draw_sprite_ext(spr_light3,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
- draw_set_blend_mode(bm_normal);  
+ 
     } else if (colorType == 1){
         draw_set_blend_mode(blendMode);
         draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 0, 0),1);

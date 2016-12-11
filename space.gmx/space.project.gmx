@@ -3,7 +3,9 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <NewExtensions/>
+  <NewExtensions>
+    <extension index="0">extensions\Rainbow Future</extension>
+  </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_btn_start</sprite>
@@ -18,6 +20,11 @@
     <background>background\back_main</background>
   </backgrounds>
   <paths name="paths"/>
+  <shaders name="shaders">
+    <shader type="GLSLES">shaders\shade_test.shader</shader>
+    <shader type="GLSLES">shaders\shader0.shader</shader>
+    <shader type="GLSLES">shaders\shader3.shader</shader>
+  </shaders>
   <fonts name="fonts">
     <font>fonts\fnt_gameFont</font>
   </fonts>

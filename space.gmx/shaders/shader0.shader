@@ -10,14 +10,14 @@ varying vec4 v_vColour;
 void main()
 {
     //in_Position.x += 10.0;
-    float nums = in_Position.x ;//+ 10.0;
-    vec4 object_space_pos = vec4( nums , in_Position.y, in_Position.z, 1.0);
+   // float nums = in_Position.x ;//+ 10.0;
+    vec4 object_space_pos = vec4( in_Position.x , in_Position.y, in_Position.z, 1.0);
     gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * object_space_pos;
     //in_TextureCoord.x += 10.0;
-    v_vColour = vec4(255,0,0,1);//in_Colour;
+    v_vColour = in_Colour;
 
     v_vTexcoord = in_TextureCoord;
-    in_TextureCoord.u += 10.0;
+   // in_TextureCoord.u += 10.0;
    // v_vTexcoord = vec2(30.0, 30.0);
 }
 

@@ -5,15 +5,7 @@ attribute vec2 in_TextureCoord;              // (u,v)
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
-struct MaterialSource
-{
-    vec3 Ambient;
-    vec4 Diffuse;
-    vec3 Specular;
-    float Shininess;
-    vec2 TextureOffset;
-    vec2 TextureScale;
-};
+
 
 void main()
 {
@@ -35,23 +27,7 @@ varying vec4 v_vColour;
 
 void main(){
     vec2 uv = v_vTexcoord.xy;
-   vec2 uv2 = v_vTexcoord.xy * 1.1;
-    float uv3 = atan(uv.x,uv.y);
-    
-    float cor = (vRes.x / vRes.y);
-    float ra = 1.0 + (cos(vTime/60.0))/10.0;
-    float rs = 1.0 - (sin(vTime/30.0))/10.0;
-    vec2 p =  v_vTexcoord.xy * 1.5;
-    p.x *= cor;
-    float a = atan(p.x,p.y);
-    float r = length(p) * ra;
-    mediump vec4 total = vec4(0.0);
-   // uv = vec2((a),length(p) );
-   // uv.x /= 2.0;
-   //total +=  texture2D( gm_BaseTexture, uv );
-   //total +=  texture2D( gm_BaseTexture, uv +  vec2(10.0 , 10.0));
-   
-    // gl_FragColor = v_vColour * texture2D( gm_BaseTexture, uv );
+
     gl_FragColor = v_vColour * texture2D( gm_BaseTexture, uv );
 
  
@@ -75,8 +51,6 @@ void main(){
         gl_FragColor.r += verColor;
    }
     gl_FragColor.r = uv.x;
-
-   float bv = 1.0;
 
    
    

@@ -187,7 +187,9 @@ with instance_place(x, y, obj_lasor1) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var vRes = shader_get_uniform(shader0,"vRes");
+            <string>/*
+
+var vRes = shader_get_uniform(shader0,"vRes");
     var vTime = shader_get_uniform(shader0,"vTime");
     var vSwitch = shader_get_uniform(shader0,"vSwitch");
     var yOffset = shader_get_uniform(shader0,"yOffset");
@@ -201,6 +203,8 @@ with instance_place(x, y, obj_lasor1) {
     //draw_surface_stretched(global.mainSurface,0,0,view_wport[0],view_hport[0]);
     draw_self();
     shader_reset();
+    
+    */
 </string>
           </argument>
         </arguments>

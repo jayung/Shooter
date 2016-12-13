@@ -23,6 +23,7 @@ varying vec4 v_vColour;
 
 void main(){
     vec2 uv = v_vTexcoord.xy;
+    vec2 uv2 = v_vTexcoord.xy;
     float cor = (vRes.x / vRes.y);
     float ra = 1.0 + (cos(vTime/60.0))/10.0;
     float rs = 1.0 - (sin(vTime/30.0))/10.0;
@@ -33,8 +34,8 @@ void main(){
     
     //squigly line
     if(vSwitch == 0.0){
-        uv.y *= 2.0 + (sin((uv.x*10.0) + (vTime/30.0))) / (2.0 / (sin(vTime/30.0)/10.0)) - .5 - yOffset;
-        uv.x *= cor;
+      //  uv.y *= 2.0 + (sin((uv.x*10.0) + (vTime/30.0))) / (2.0 / (sin(vTime/30.0)/10.0)) - .5 - yOffset;
+      //  uv.x *= cor;
     }
     
     //curved line
@@ -91,9 +92,30 @@ void main(){
    }
 
    //line
-   uv = (2.0 * uv) - 1.0 / ra;
-   float bw = abs(1.0 / (30.0 * uv.y)) * ra;
+   uv = (1.5 * uv) - 1.0 / ra;
+   float bw = 1.0;//abs(1.0 / (30.0 * uv.y)) * ra;
    vec3 hb = vec3(bw);
     
-    gl_FragColor = vec4(((bv * hb) * hc), 1.0);
+    //gl_FragColor = vec4(((bv * hb) * hc), 1.0);
+    
+    // gl_FragColor = vec4((  hc), 1.0);
+    gl_FragColor = v_vColour * texture2D( gm_BaseTexture, uv2 );
+    if (gl_FragColor.rgb == vec3(255,255,255) ){
+        gl_FragColor = v_vColour * texture2D( gm_BaseTexture, uv2 );
+    } else  if (gl_FragColor.a < 1.0 && gl_FragColor.a > 0.5){
+        // gl_FragColor.rgb = vec3(255,255,255);
+        //gl_FragColor = vec4((  hc), 1.0);
+        //gl_FragColor = vec4(((bv * hb) * hc), 1.0);
+         gl_FragColor = v_vColour * texture2D( gm_BaseTexture, uv2 );
+         gl_FragColor.rgba = vec4(((bv * hb) * hc), 1.0)  * texture2D( gm_BaseTexture, uv2 );
+    
+    } else if (gl_FragColor.a == 1.0 ){
+        gl_FragColor = v_vColour * texture2D( gm_BaseTexture, uv2 );
+        gl_FragColor.rgba = vec4(((bv * hb) * hc), 1.0)  * texture2D( gm_BaseTexture, uv2 );
+    } else {
+     gl_FragColor = v_vColour * texture2D( gm_BaseTexture, uv2 );
+        //gl_FragColor = vec4(((bv * hb) * hc), 1.0);
+       // gl_FragColor = vec4((  hc), 1.0);
+    }
+   
     }

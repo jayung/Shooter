@@ -31,6 +31,16 @@
 surf = surface_create(room_width, room_height);
 surfScale = 1;
 
+///initialize variables
+global.counter = 1;
+global.counter2 = 0;
+global.vswitch = 0;
+//showText = true;
+global.y_offset0 = 0;
+
+global.fCount = 18;
+global.mainSurface = -1;
+
 
 </string>
           </argument>
@@ -79,7 +89,21 @@ surfScale = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>surface_set_target(surf);
+            <string> draw_set_blend_mode(bm_subtract);
+    shader_set(shader3);
+    if(!surface_exists(surf))
+     surf = surface_create(view_wport[0],view_hport[0]);
+    
+    surface_set_target(surf);
+    draw_clear_alpha(c_white,1.0);
+    surface_reset_target();
+    
+    draw_surface_stretched(surf,0,0,view_wport[0],view_hport[0]);
+    
+
+    
+
+surface_set_target(surf);
 draw_clear(c_black);
 
 
@@ -87,42 +111,44 @@ var blendMode = bm_src_alpha;//bm_inv_src_color  ;
 var blendIntensity = 0.8;
 draw_enable_alphablend(true);
 
+
+
+
+    var vRes = shader_get_uniform(shader3,"vRes");
+    var vTime = shader_get_uniform(shader3,"vTime");
+    var vSwitch = shader_get_uniform(shader3,"vSwitch");
+    var yOffset = shader_get_uniform(shader3,"yOffset");
+
+    global.counter += 1;
+    shader_set(shader3);
+    shader_set_uniform_f(vRes,view_wport[0],view_hport[0]);
+    shader_set_uniform_f(vTime, global.counter);
+    shader_set_uniform_f(vSwitch,global.vswitch);
+    shader_set_uniform_f(yOffset,global.y_offset0);
+
 with(obj_light)
-{   //bm_zero vs bm_src_color
-//bm_zero
-//bm_one
-    //bm_src_color
-    //bm_inv_src_color
-//bm_src_alpha
-//bm_inv_src_alpha
-//bm_dest_alpha
-//bm_inv_dest_alpha
-//bm_dest_color   
-//bm_inv_dest_color
-//bm_src_alpha_sat
-    if (colorType == 0){
-    //bm_src_color
-        //draw_set_blend_mode(blendMode);
-        //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),blendIntensity);
+{ 
      draw_set_blend_mode(bm_src_color);
      draw_sprite_ext(spr_light3,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
  
-    } else if (colorType == 1){
-        draw_set_blend_mode(blendMode);
-        draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 0, 0),1);
-    
-    }
-    //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
+  //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
     draw_set_blend_mode(bm_normal);
 }
-
 with(obj_lightBlue)
 {
  //draw_set_blend_mode(blendMode);
  //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(0, 0, 255),0.9);
+  /*
   draw_set_blend_mode(blendMode);
  draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(0, 0, 255),1.0);
  draw_set_blend_mode(bm_normal);  
+ */
+ draw_set_blend_mode(bm_src_color);
+ 
+     draw_sprite_ext(spr_light3,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
+ 
+  //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
+    draw_set_blend_mode(bm_normal);
 }
 with(obj_lightRed)
 {
@@ -141,15 +167,29 @@ with(obj_lightRed)
 //bm_dest_color
 //bm_src_alpha
 
-
+/*
  draw_set_blend_mode(blendMode);
  draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 0, 0),0.33);
 
- draw_set_blend_mode(bm_normal);  
+ draw_set_blend_mode(bm_normal); 
+ */
+ draw_set_blend_mode(bm_src_color);
+ 
+     draw_sprite_ext(spr_light3,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
+ 
+  //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
+    draw_set_blend_mode(bm_normal); 
 }
 
+    shader_reset();
+   
 surface_reset_target();
 draw_surface_ext(surf,0,0,1/surfScale,1/surfScale,0,c_white,0.9);
+
+with (obj_player){
+    draw_self();
+    
+}
 </string>
           </argument>
         </arguments>

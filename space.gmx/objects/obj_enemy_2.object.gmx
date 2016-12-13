@@ -165,6 +165,7 @@ if (y &gt; 500){
 with instance_place(x, y, obj_lasor1) {
                 instance_destroy();
 }
+
 </string>
           </argument>
         </arguments>
@@ -205,6 +206,8 @@ var vRes = shader_get_uniform(shader0,"vRes");
     shader_reset();
     
     */
+    
+    draw_self();
 </string>
           </argument>
         </arguments>

@@ -23,6 +23,8 @@
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shade_test.shader</shader>
     <shader type="GLSLES">shaders\shader3.shader</shader>
+    <shader type="GLSLES">shaders\shader01.shader</shader>
+    <shader type="GLSLES">shaders\shader02.shader</shader>
     <shader type="GLSLES">shaders\shader0.shader</shader>
   </shaders>
   <fonts name="fonts">

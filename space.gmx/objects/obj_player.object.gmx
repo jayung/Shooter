@@ -29,19 +29,20 @@
 lasorCounter = 0;
 lasorFireRate = 60; // when counter gets to 60 you can fire again (1 frame)
 lasorHeightOffset = 8;
-
+lasorType = 2; // big straight lasor
 // local Varaibles
 charX = 160;
 charY = 384;
 x = charX;
 y = charY;
 
-charWidth = 11; //half of sprite width
+charWidth = sprite_width/2; //half of sprite width
 charPosSpeed = 25; //how fast it goes to touch location
 
 
 playerLight = instance_create(charX, charY, obj_light);
 playerLight.lightSize = 4;
+
 
 
 
@@ -85,7 +86,7 @@ show_debug_message(shader_get_uniform(shader0,"v_vColour"));
             <kind>1</kind>
             <string>if (global.isTouching == 1)
 {
-    if (lasorCounter == 0){
+    if (lasorCounter == 0 &amp;&amp; lasorType == 1){
         newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor1);
         newlasor.xDiff = 2;
         newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor1);
@@ -93,6 +94,21 @@ show_debug_message(shader_get_uniform(shader0,"v_vColour"));
         newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor1);
         newlasor.xDiff = -2;
         lasorCounter = lasorFireRate;
+    } else if (lasorCounter == 0 &amp;&amp; lasorType == 2){
+       newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor2);
+       lasorType = 222;
+       
+     //draw_set_colour(c_white);
+     //draw_line_width_color(charX + charWidth ,charY - lasorHeightOffset, charX + charWidth, charY - lasorHeightOffset - 480, 6, c_lime, c_white);    
+    } else if (lasorType == 222){
+        newlasor.x = charX + charWidth;
+    }
+} else {
+    if (lasorType == 222){
+        with (newlasor){
+            instance_destroy();
+        }
+        lasorType = 2;
     }
 }
 // Lasor Controller
@@ -147,6 +163,8 @@ playerLight.y = charY + (sprite_height/2);
 
 
 draw_self();
+
+
 </string>
           </argument>
         </arguments>

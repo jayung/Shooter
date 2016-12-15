@@ -30,6 +30,7 @@ lasorCounter = 0;
 lasorFireRate = 60; // when counter gets to 60 you can fire again (1 frame)
 lasorHeightOffset = 8;
 lasorType = 2; // big straight lasor
+lasorWidth = 1; //used for lasor # 2 for now
 // local Varaibles
 charX = 160;
 charY = 384;
@@ -60,7 +61,9 @@ global.mainSurface = -1;
 
 show_debug_message(shader_get_uniform(shader0,"v_vColour"));
 
-
+// We want our global X for lasor2 and perhaps others
+global.xPlayer = x;
+global.yPlayer = x;
 
 </string>
           </argument>
@@ -97,7 +100,9 @@ show_debug_message(shader_get_uniform(shader0,"v_vColour"));
     } else if (lasorCounter == 0 &amp;&amp; lasorType == 2){
        newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor2);
        lasorType = 222;
-       
+       with (newlasor) {
+            width = other.lasorWidth;
+       }
      //draw_set_colour(c_white);
      //draw_line_width_color(charX + charWidth ,charY - lasorHeightOffset, charX + charWidth, charY - lasorHeightOffset - 480, 6, c_lime, c_white);    
     } else if (lasorType == 222){
@@ -134,8 +139,11 @@ playerLight.x = charX + (sprite_width/2);
 playerLight.y = charY + (sprite_height/2);
 
 
-// Shader
 
+
+// Keep track of player X
+global.xPlayer = x;
+global.yPlayer = y;
 
 </string>
           </argument>

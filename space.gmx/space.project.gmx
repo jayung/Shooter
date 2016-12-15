@@ -49,10 +49,13 @@
       <object>objects\obj_enemy_2</object>
       <object>objects\obj_enemy_lasor1</object>
     </objects>
-    <object>objects\obj_powerup_rate</object>
     <objects name="Wave">
       <object>objects\obj_wave_1</object>
       <object>objects\obj_waveController</object>
+    </objects>
+    <objects name="powerups">
+      <object>objects\obj_powerup_rate</object>
+      <object>objects\obj_powerup_width</object>
     </objects>
   </objects>
   <rooms name="rooms">

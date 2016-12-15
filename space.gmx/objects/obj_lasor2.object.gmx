@@ -25,8 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>damage = 1;
-
+            <string>// How much damage does the lasor do?
+damage = 1;
+// How thick is this lasor?
+width = 1;
+// Y location of the light, we create lots of lights to cover the beams
 lightY = 0;
 instance_create(x, y-lightY, obj_light_lasor2);
 lightY += 30;
@@ -45,8 +48,9 @@ lightY += 30;
 instance_create(x, y-lightY, obj_light_lasor2);
 lightY += 30;
 instance_create(x, y-lightY, obj_light_lasor2);
+
 with (obj_light_lasor2){
-    lightSize = 4;
+    lightSize = 4 + other.width;
 }
 xDiff = 0;
 xStart = x;
@@ -54,7 +58,7 @@ x = x;
 
 //sprite_height = 480;
 
-//image_xscale *= 100;
+image_xscale *= width;
 y = 0;
 </string>
           </argument>
@@ -122,10 +126,12 @@ x = other.x + (other.sprite_width / 2);
 
 
 if (y &lt; -20){
-    instance_destroy();
+//    instance_destroy();
 }
 
-
+// draw_line_width_color(global.xPlayer + (obj_player.sprite_width/2), global.yPlayer, global.xPlayer + (obj_player.sprite_width/2), global.yPlayer - 480, 8, c_lime, c_white);
+x = global.xPlayer + (obj_player.sprite_width/2) - (width/2);
+y = global.yPlayer - 390;
 image_angle = point_direction(x, y, x, y+300) + 90;
 </string>
           </argument>
@@ -152,11 +158,15 @@ image_angle = point_direction(x, y, x, y+300) + 90;
             <string>//draw_self();
 if (global.isTouching == 1)
 {
-     draw_set_colour(c_white);
-    // draw_line_width_color(x, y, x, y - 480, 6, c_lime, c_white);    
+//     draw_set_colour(c_white);
+//     draw_line_width_color(x, y, x, y - 480, 8, c_lime, c_white);    
 
 }
-draw_self();
+ draw_set_colour(c_white);
+ draw_line_width_color(global.xPlayer + (obj_player.sprite_width/2), global.yPlayer, global.xPlayer + (obj_player.sprite_width/2), global.yPlayer - 480, width, c_lime, c_white);
+// draw_line_width_color(50, 50, 300, 50, 4, c_red, c_blue);
+
+//draw_self();
 </string>
           </argument>
         </arguments>

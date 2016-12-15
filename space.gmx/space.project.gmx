@@ -15,6 +15,7 @@
     <sprite>sprites\spr_lasor1</sprite>
     <sprite>sprites\spr_light3</sprite>
     <sprite>sprites\spr_light</sprite>
+    <sprite>sprites\spr_lasor2</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_main</background>
@@ -35,8 +36,10 @@
     <object>objects\obj_main</object>
     <object>objects\obj_player</object>
     <object>objects\obj_lasor1</object>
+    <object>objects\obj_lasor2</object>
     <objects name="lights">
       <object>objects\obj_light</object>
+      <object>objects\obj_light_lasor2</object>
       <object>objects\obj_lightRed</object>
       <object>objects\obj_lightBlue</object>
       <object>objects\obj_control</object>
@@ -46,10 +49,13 @@
       <object>objects\obj_enemy_2</object>
       <object>objects\obj_enemy_lasor1</object>
     </objects>
-    <object>objects\obj_powerup_rate</object>
     <objects name="Wave">
       <object>objects\obj_wave_1</object>
       <object>objects\obj_waveController</object>
+    </objects>
+    <objects name="powerups">
+      <object>objects\obj_powerup_rate</object>
+      <object>objects\obj_powerup_width</object>
     </objects>
   </objects>
   <rooms name="rooms">

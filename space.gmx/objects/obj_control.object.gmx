@@ -134,6 +134,13 @@ with(obj_light)
   //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
     draw_set_blend_mode(bm_normal);
 }
+with(obj_light_lasor2)
+{ 
+     draw_set_blend_mode(bm_src_color);
+     draw_sprite_ext(spr_light3,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
+     draw_set_blend_mode(bm_normal);
+}
+
 with(obj_lightBlue)
 {
  //draw_set_blend_mode(blendMode);

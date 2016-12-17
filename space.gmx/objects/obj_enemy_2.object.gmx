@@ -30,7 +30,7 @@ velocity = 2; // How fast does he move down the screen
 enemyScore = 5; // How many points is he worth
 
 // Create the enemy light
-enemyLight = instance_create(x, y, obj_lightRed);
+enemyLight = instance_create(x, y, obj_light);
 // How big is that light?
 enemyLight.lightSize = 4;
 

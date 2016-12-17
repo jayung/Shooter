@@ -47,6 +47,37 @@ global.playerScore = 0;
 //create light for score area
 playerLight = instance_create(5, 0, obj_light);
 playerLight.lightSize = 8;
+
+// Sound Code
+musicPlayer =  sound_music;
+musicIndex = 0;
+if !audio_is_playing(musicPlayer)
+   {
+   //musicIndex = audio_play_sound(musicPlayer, 10, true);
+   }
+
+   
+   
+soundCounter = 0;
+/*
+rate = 44100;
+hertz = irandom_range(220, 1880);
+samples = 44100;
+bufferId = buffer_create(rate, buffer_fast, 1);
+buffer_seek(bufferId, buffer_seek_start, 0);
+num_to_write = rate / hertz;
+val_to_write = 1;
+for (var i = 0; i &lt; (samples / num_to_write) + 1; i++;)
+   {
+   for (var j = 0; j &lt; num_to_write; j++;)
+      {
+      buffer_write(bufferId, buffer_u8, val_to_write * 255);
+      }
+   val_to_write = (1 - val_to_write);
+   }
+soundId = audio_create_buffer_sound(bufferId, buffer_u8, rate, 0, 44100, audio_mono);
+musicIndex2 = audio_play_sound(soundId, 10, true);
+*/
 </string>
           </argument>
         </arguments>
@@ -83,10 +114,40 @@ if device_mouse_check_button(0, mb_left)
     global.isTouching = 0;
 }
 
+// Audio Code
+//show_debug_message(string(       audio_sound_get_track_position(musicIndex)                   ));
+//show_debug_message(string(       audio_sound_get_track_position(zmusicIndex)                   ));
 
-
-
-
+//audio_sound_pitch(musicPlayer, 4);
+soundCounter += 1;
+/*
+if (soundCounter &gt;= 60){
+soundCounter = 0;
+audio_debug(true);
+audio_stop_sound(musicIndex2);
+rate = 44100;
+show_debug_message(string( (sin(obj_player.x*10.0) ) ));
+hertz = 200  * (sin(obj_player.x*10.0) / soundCounter);//irandom_range(220, 1880);
+if (hertz &lt; 200){
+    hertz = 200;
+}
+samples = 44100;
+bufferId = buffer_create(rate, buffer_fast, 1);
+buffer_seek(bufferId, buffer_seek_start, 0);
+num_to_write = rate / hertz;
+val_to_write = 1;
+for (var i = 0; i &lt; (samples / num_to_write) + 1; i++;)
+   {
+   for (var j = 0; j &lt; num_to_write; j++;)
+      {
+      buffer_write(bufferId, buffer_u8, val_to_write * 255);
+      }
+   val_to_write = (1 - val_to_write);
+   }
+soundId = audio_create_buffer_sound(bufferId, buffer_u8, rate, 0, 44100, audio_mono);
+musicIndex2 = audio_play_sound(soundId, 10, true);
+}
+*/
 </string>
           </argument>
         </arguments>

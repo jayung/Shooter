@@ -89,8 +89,30 @@ global.mainSurface = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string> draw_set_blend_mode(bm_subtract);
-    shader_set(shader3);
+            <string>//bm_zero
+//bm_one
+//bm_src_color
+//  bm_inv_src_color
+//bm_src_alpha
+//bm_inv_src_alpha
+//bm_dest_alpha
+//bm_inv_dest_alpha
+//bm_dest_color   
+//bm_inv_dest_color
+//bm_src_alpha_sat
+
+//bm_dest_color
+//bm_src_alpha
+// bm_add
+// bm_subtract
+// bm_max
+// bm_normal
+
+    currentShader = shader_blue;
+    blendMode = bm_subtract;
+    
+    draw_set_blend_mode(blendMode); //bm_subtract
+    shader_set(currentShader);
     if(!surface_exists(surf))
      surf = surface_create(view_wport[0],view_hport[0]);
     
@@ -114,13 +136,13 @@ draw_enable_alphablend(true);
 
 
 
-    var vRes = shader_get_uniform(shader3,"vRes");
-    var vTime = shader_get_uniform(shader3,"vTime");
-    var vSwitch = shader_get_uniform(shader3,"vSwitch");
-    var yOffset = shader_get_uniform(shader3,"yOffset");
-
+    var vRes = shader_get_uniform(currentShader,"vRes");
+    var vTime = shader_get_uniform(currentShader,"vTime");
+    var vSwitch = shader_get_uniform(currentShader,"vSwitch");
+    var yOffset = shader_get_uniform(currentShader,"yOffset");
+   // var distanceF = shader_get_uniform(point_distance(0, 0, x2, y2),"distanceF");
     global.counter += 1;
-    shader_set(shader3);
+    shader_set(currentShader);
     shader_set_uniform_f(vRes,view_wport[0],view_hport[0]);
     shader_set_uniform_f(vTime, global.counter);
     shader_set_uniform_f(vSwitch,global.vswitch);
@@ -128,7 +150,7 @@ draw_enable_alphablend(true);
 
 with(obj_light)
 { 
-     draw_set_blend_mode(bm_src_color);
+     draw_set_blend_mode(bm_src_color); // bm_src_color
      draw_sprite_ext(spr_light3,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
  
   //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);

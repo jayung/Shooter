@@ -106,13 +106,18 @@ global.yPlayer = x;
      //draw_set_colour(c_white);
      //draw_line_width_color(charX + charWidth ,charY - lasorHeightOffset, charX + charWidth, charY - lasorHeightOffset - 480, 6, c_lime, c_white);    
     } else if (lasorType == 222){
-        newlasor.x = charX + charWidth;
+        
+        with (newlasor) {
+            width = other.lasorWidth;
+       }
+       newlasor.x = charX + charWidth;
     }
 } else {
     if (lasorType == 222){
         with (newlasor){
             instance_destroy();
         }
+        
         lasorType = 2;
     }
 }

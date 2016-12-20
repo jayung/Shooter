@@ -28,11 +28,13 @@
             <string>/// Create Script   
 lightSize = 2;
 lightStrength = 1;
-redC = 0;
-greenC = 0;
-blueC = 0;
-inc = 1;
+
 colorType = 0; //white;
+
+//----------------------
+// 0 pulsates to music
+// 1 just lights up
+lightType = 1.0; 
 </string>
           </argument>
         </arguments>

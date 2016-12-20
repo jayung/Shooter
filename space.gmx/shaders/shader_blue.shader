@@ -22,6 +22,7 @@ void main()
 uniform float vSwitch;
 uniform float yOffset;
 uniform float distanceF;
+uniform float shadeType;
 
 varying vec2 v_vTexcoord;
 uniform vec3 vRes;
@@ -75,10 +76,17 @@ void main(){
    float bw = abs(1.0 / (30.0 * uv.y)) * ra;
    vec3 hb = vec3(bw);
     //gl_FragColor.b = 0.0;
+    if (shadeType == 0.0){
+     gl_FragColor.r = distanceF;
+    gl_FragColor.g = distanceF;
+    gl_FragColor.b = distanceF;
+    } else if (shadeType == 21.0) {
+    
+    
     float x1 = v_vPosition.x;
-    float x2 = sin(vTime / 160.0) * 320.0 * 4.0;
+    float x2 = sin(vTime / 80.0) * 320.0 * 4.0;
     float y1 = v_vPosition.y;
-    float y2 = sin(vTime / 160.0) * 480.0 * 4.0;
+    float y2 = sin(vTime / 80.0) * 480.0 * .0;
     
     gl_FragColor.r = 0.5;
     gl_FragColor.g = 0.5;
@@ -87,6 +95,21 @@ void main(){
    // gl_FragColor.g *=  sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 576.0;
     gl_FragColor.r *=  sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 576.0;
     gl_FragColor.g *=  sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 576.0;
+    
+    } 
+    
+    gl_FragColor.r = distanceF;
+    gl_FragColor.g = distanceF ;
+    gl_FragColor.b = distanceF;
+    
+    float x1 = v_vPosition.x;
+    float x2 = sin(vTime / 80.0) * 320.0 * 1.0;
+    float y1 = v_vPosition.y;
+    float y2 = sin(vTime / 80.0) * 480.0 * 1.0;
+    
+    gl_FragColor.r *=  sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 1576.0;
+    gl_FragColor.g *=  sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 1576.0;
+    gl_FragColor.b *=  sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 1576.0;
     
    ///////////////////////////
     

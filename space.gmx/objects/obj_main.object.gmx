@@ -34,6 +34,10 @@ charWidth = 11; //half of sprite width
 
 // We create our player object
 instance_create(0, 0, obj_player);
+// We create a sound buffer object. This object will play our background music
+// But also handle our beats per minute values. Used to pulsate colors of lighting
+// This object has a global variable that obj_control for lights needs
+instance_create(0, 0, obj_sound_buffer);
 
 
 // We will spawn a 'wave' object based on this global value.
@@ -56,28 +60,6 @@ if !audio_is_playing(musicPlayer)
    //musicIndex = audio_play_sound(musicPlayer, 10, true);
    }
 
-   
-   
-soundCounter = 0;
-/*
-rate = 44100;
-hertz = irandom_range(220, 1880);
-samples = 44100;
-bufferId = buffer_create(rate, buffer_fast, 1);
-buffer_seek(bufferId, buffer_seek_start, 0);
-num_to_write = rate / hertz;
-val_to_write = 1;
-for (var i = 0; i &lt; (samples / num_to_write) + 1; i++;)
-   {
-   for (var j = 0; j &lt; num_to_write; j++;)
-      {
-      buffer_write(bufferId, buffer_u8, val_to_write * 255);
-      }
-   val_to_write = (1 - val_to_write);
-   }
-soundId = audio_create_buffer_sound(bufferId, buffer_u8, rate, 0, 44100, audio_mono);
-musicIndex2 = audio_play_sound(soundId, 10, true);
-*/
 </string>
           </argument>
         </arguments>
@@ -119,7 +101,7 @@ if device_mouse_check_button(0, mb_left)
 //show_debug_message(string(       audio_sound_get_track_position(zmusicIndex)                   ));
 
 //audio_sound_pitch(musicPlayer, 4);
-soundCounter += 1;
+//soundCounter += 1;
 /*
 if (soundCounter &gt;= 60){
 soundCounter = 0;
@@ -148,6 +130,9 @@ soundId = audio_create_buffer_sound(bufferId, buffer_u8, rate, 0, 44100, audio_m
 musicIndex2 = audio_play_sound(soundId, 10, true);
 }
 */
+
+
+//show_debug_message(string(       global.beat   ));
 </string>
           </argument>
         </arguments>

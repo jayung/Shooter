@@ -28,6 +28,7 @@
             <string>damage = 1;
 lasorLight = instance_create(x, y, obj_light);
 lasorLight.lightSize = 2;
+lasorLight.lightType = 0.0;
 xDiff = 1;
 xStart = x;
 </string>
@@ -120,8 +121,7 @@ image_angle = point_direction(x, y, transx, transy) + 90;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
-</string>
+            <string></string>
           </argument>
         </arguments>
       </action>

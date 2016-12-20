@@ -37,10 +37,11 @@ global.counter2 = 0;
 global.vswitch = 0;
 //showText = true;
 global.y_offset0 = 0;
-
 global.fCount = 18;
 global.mainSurface = -1;
 
+// beats per minute
+global.songBeat = 0.0;
 
 </string>
           </argument>
@@ -66,6 +67,7 @@ global.mainSurface = -1;
             <kind>1</kind>
             <string>///Main
 
+// beat per minute
 
 </string>
           </argument>
@@ -89,8 +91,7 @@ global.mainSurface = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//bm_zero
-//bm_one
+            <string>//bm_one
 //bm_src_color
 //  bm_inv_src_color
 //bm_src_alpha
@@ -140,6 +141,9 @@ draw_enable_alphablend(true);
     var vTime = shader_get_uniform(currentShader,"vTime");
     var vSwitch = shader_get_uniform(currentShader,"vSwitch");
     var yOffset = shader_get_uniform(currentShader,"yOffset");
+    distanceF = shader_get_uniform( currentShader,"distanceF");
+   shadeType = shader_get_uniform( currentShader,"shadeType");
+    shader_set_uniform_f(distanceF, global.songBeat);
    // var distanceF = shader_get_uniform(point_distance(0, 0, x2, y2),"distanceF");
     global.counter += 1;
     shader_set(currentShader);
@@ -147,6 +151,7 @@ draw_enable_alphablend(true);
     shader_set_uniform_f(vTime, global.counter);
     shader_set_uniform_f(vSwitch,global.vswitch);
     shader_set_uniform_f(yOffset,global.y_offset0);
+    shader_set_uniform_f(shadeType, 1.0);
 
 with(obj_light)
 { 
@@ -156,12 +161,9 @@ with(obj_light)
   //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
     draw_set_blend_mode(bm_normal);
 }
-with(obj_light_lasor2)
-{ 
-     draw_set_blend_mode(bm_src_color);
-     draw_sprite_ext(spr_light3,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
-     draw_set_blend_mode(bm_normal);
-}
+shader_reset();
+
+
 
 with(obj_lightBlue)
 {
@@ -211,14 +213,38 @@ with(obj_lightRed)
 }
 
     shader_reset();
-   
+   currentShader = shader_blue;
+shader_set(currentShader);
+distanceF = shader_get_uniform( currentShader,"distanceF");
+shadeType = shader_get_uniform( currentShader,"shadeType");
+shader_set_uniform_f(shadeType, 0.0);  
+shader_set_uniform_f(distanceF, global.songBeat);
+
+with(obj_player)
+{ 
+    draw_self();
+     //draw_set_blend_mode(bm_src_color);
+     //draw_sprite_ext(spr_light3,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
+     //draw_set_blend_mode(bm_normal);
+}
+with(obj_lasor1)
+{ 
+    draw_self();
+     //draw_set_blend_mode(bm_src_color);
+     //draw_sprite_ext(spr_light3,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
+     //draw_set_blend_mode(bm_normal);
+}
+shader_reset();
+  currentShader = shader_blue;
+shader_set(currentShader);
+distanceF = shader_get_uniform( currentShader,"distanceF");
+shadeType = shader_get_uniform( currentShader,"shadeType");
+shader_set_uniform_f(shadeType, 1.0);  
+shader_reset();
 surface_reset_target();
 draw_surface_ext(surf,0,0,1/surfScale,1/surfScale,0,c_white,0.9);
 
-with (obj_player){
-    draw_self();
-    
-}
+
 </string>
           </argument>
         </arguments>

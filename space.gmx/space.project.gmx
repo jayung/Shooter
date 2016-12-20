@@ -8,7 +8,6 @@
   </NewExtensions>
   <sounds name="sound">
     <sound>sound\sound_music</sound>
-    <sound>sound\sound_deleteme</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_btn_start</sprite>
@@ -28,9 +27,12 @@
     <shader type="GLSLES">shaders\shade_test.shader</shader>
     <shader type="GLSLES">shaders\shader3.shader</shader>
     <shader type="GLSLES">shaders\shader_blue.shader</shader>
+    <shader type="GLSLES">shaders\shader_pulse_music.shader</shader>
+    <shader type="GLSLES">shaders\shader_master.shader</shader>
     <shader type="GLSLES">shaders\shader01.shader</shader>
     <shader type="GLSLES">shaders\shader02.shader</shader>
     <shader type="GLSLES">shaders\shader0.shader</shader>
+    <shader type="GLSLES">shaders\shader_normal.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\fnt_gameFont</font>
@@ -60,6 +62,9 @@
     <objects name="powerups">
       <object>objects\obj_powerup_rate</object>
       <object>objects\obj_powerup_width</object>
+    </objects>
+    <objects name="Sound">
+      <object>objects\obj_sound_buffer</object>
     </objects>
   </objects>
   <rooms name="rooms">

@@ -30,6 +30,11 @@ lightSize = 3;
 lightStrength = 1;
 
 colorType = 1; //white;
+
+//colors
+tRed = 0.0;
+tBlue = 1.0;
+tGreen = 0.0;
 </string>
           </argument>
         </arguments>

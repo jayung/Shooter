@@ -33,10 +33,16 @@ varying vec3 v_vPosition;
 
 void main(){
   vec2 uv = v_vTexcoord.xy;
+  
+   float x1 = v_vPosition.x;
+    float x2 = sin(vTime / 80.0) * 320.0 * 1.0;
+    float y1 = v_vPosition.y;
+    float y2 = v_vPosition.y;//sin(vTime / 80.0) * 480.0 * 1.0;
+    float distances = sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 576.0;
     //uv.x = 0.1;
     //uv.y += 50.0;
    // v_vColour = vec4(0.0, 1.0, 0.0, 1.0);
-    float cor = (vRes.x / vRes.y);
+float cor = (vRes.x / vRes.y);
     float ra = 1.0 + (cos(vTime/60.0))/10.0;
     float rs = 1.0 - (sin(vTime/30.0))/10.0;
     vec2 p =  v_vTexcoord.xy * 1.5;
@@ -44,12 +50,17 @@ void main(){
     float a = atan(p.x,p.y);
     float r = length(p) * ra;
     
+   
     gl_FragColor = v_vColour * texture2D( gm_BaseTexture, uv );
     gl_FragColor.r = sin(uv.x*10.0) / vTime;
-    float verColor = (uv.x - (vTime / 120.0)) * 3.0;
+float verColor = (uv.x - (vTime / 120.0)) * 3.0;
     verColor = mod(verColor, 3.0);
-    vec3 hc = vec3(0.25, 0.25, 0.25);
-    
+    vec3 hc;
+     if (distanceF < 0.5){
+       hc = vec3(distanceF,distanceF,distanceF);
+    } else {
+       hc = vec3(0.5 ,0.5,0.5);
+    }
     if (verColor < 1.0) {
         hc.r += 1.0 - verColor;
         hc.g += verColor;
@@ -72,59 +83,31 @@ void main(){
    }
 
    //line
-   uv = (2.0 * uv) - 1.0 / ra;
+  // uv = (2.0 * uv) - 1.0 / ra;
    float bw = abs(1.0 / (30.0 * uv.y)) * ra;
    vec3 hb = vec3(bw);
-    //gl_FragColor.b = 0.0;
-    if (shadeType == 0.0){
-     gl_FragColor.r = distanceF;
-    gl_FragColor.g = distanceF;
-    gl_FragColor.b = distanceF;
-    } else if (shadeType == 21.0) {
     
-    
-    float x1 = v_vPosition.x;
-    float x2 = sin(vTime / 80.0) * 320.0 * 4.0;
-    float y1 = v_vPosition.y;
-    float y2 = sin(vTime / 80.0) * 480.0 * .0;
-    
-    gl_FragColor.r = 0.5;
-    gl_FragColor.g = 0.5;
-    gl_FragColor.b = 0.0;
-    //gl_FragColor.r *=  sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 576.0;
-   // gl_FragColor.g *=  sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 576.0;
-    gl_FragColor.r *=  sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 576.0;
-    gl_FragColor.g *=  sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 576.0;
-    
-    } 
-    
-    gl_FragColor.r = distanceF;
-    gl_FragColor.g = distanceF ;
-    gl_FragColor.b = distanceF;
-    
-    float x1 = v_vPosition.x;
-    float x2 = sin(vTime / 80.0) * 320.0 * 1.0;
-    float y1 = v_vPosition.y;
-    float y2 = sin(vTime / 80.0) * 480.0 * 1.0;
-    
-    gl_FragColor.r *=  sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 1576.0;
-    gl_FragColor.g *=  sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 1576.0;
-    gl_FragColor.b *=  sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 1576.0;
-    
+   // gl_FragColor.rgb = vec3(( hc));
+    //gl_FragColor = v_vColour * texture2D( gm_BaseTexture, uv );
+   
+  //  
+  //  gl_FragColor.r =  1.0 - gl_FragColor.r;
+    //gl_FragColor.g *=  sqrt((y1-y2)*(y1-y2)) / 576.0;
+    //if ((sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 576.0) < 0.3 ){
+     // gl_FragColor.a /=  sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 576.0;
+   // }
+    //gl_FragColor.a = 1.0;
    ///////////////////////////
     
-    /*gl_FragColor = v_vColour * texture2D( gm_BaseTexture, uv );
+   /* gl_FragColor = v_vColour * texture2D( gm_BaseTexture, uv );
  
     
     gl_FragColor.b = 0.0;
-    float x1 = v_vPosition.x;
-    float x2 = sin(vTime / 15.0) * 320.0;
-    float y1 = v_vPosition.y;
-    float y2 = sin(vTime / 15.0) * 480.0;;
+   
     gl_FragColor.r =  sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 576.0;
     gl_FragColor.g =  sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)) / 576.0;
-    
     */
+    
     
     //gl_FragColor.rgb = vec3(( hc));
    // gl_FragColor.g =  sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
@@ -133,4 +116,5 @@ void main(){
     
     //gl_FragColor.b += 0.5;
     //gl_FragColor.r = hc.b;
+ 
     }

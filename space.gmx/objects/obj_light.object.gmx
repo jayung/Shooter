@@ -26,10 +26,14 @@
           <argument>
             <kind>1</kind>
             <string>/// Create Script   
-lightSize = 2;
-lightStrength = 1;
+lightSize = 1;
+lightStrength = 0.3;
 
 colorType = 0; //white;
+//colors
+tRed = 0.0;
+tBlue = 1.0;
+tGreen = 0.0;
 
 //----------------------
 // 0 pulsates to music

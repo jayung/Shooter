@@ -22,12 +22,14 @@
   </sprites>
   <backgrounds name="background">
     <background>background\back_main</background>
+    <background>background\background1</background>
   </backgrounds>
   <paths name="paths"/>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shade_test.shader</shader>
     <shader type="GLSLES">shaders\shader3.shader</shader>
     <shader type="GLSLES">shaders\shader_blue.shader</shader>
+    <shader type="GLSLES">shaders\shader_rgb.shader</shader>
     <shader type="GLSLES">shaders\shader_pulse_music.shader</shader>
     <shader type="GLSLES">shaders\shader_master.shader</shader>
     <shader type="GLSLES">shaders\shader01.shader</shader>

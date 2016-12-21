@@ -91,42 +91,7 @@ global.songBeat = 0.0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//bm_one
-//bm_src_color
-//  bm_inv_src_color
-//bm_src_alpha
-//bm_inv_src_alpha
-//bm_dest_alpha
-//bm_inv_dest_alpha
-//bm_dest_color   
-//bm_inv_dest_color
-//bm_src_alpha_sat
-
-//bm_dest_color
-//bm_src_alpha
-// bm_add
-// bm_subtract
-// bm_max
-// bm_normal
-
-    currentShader = shader_blue;
-    blendMode = bm_subtract;
-    
-    draw_set_blend_mode(blendMode); //bm_subtract
-    shader_set(currentShader);
-    if(!surface_exists(surf))
-     surf = surface_create(view_wport[0],view_hport[0]);
-    
-    surface_set_target(surf);
-    draw_clear_alpha(c_white,1.0);
-    surface_reset_target();
-    
-    draw_surface_stretched(surf,0,0,view_wport[0],view_hport[0]);
-    
-
-    
-
-surface_set_target(surf);
+            <string>surface_set_target(surf);
 draw_clear(c_black);
 
 
@@ -134,52 +99,42 @@ var blendMode = bm_src_alpha;//bm_inv_src_color  ;
 var blendIntensity = 0.8;
 draw_enable_alphablend(true);
 
-
-
-
-    var vRes = shader_get_uniform(currentShader,"vRes");
-    var vTime = shader_get_uniform(currentShader,"vTime");
-    var vSwitch = shader_get_uniform(currentShader,"vSwitch");
-    var yOffset = shader_get_uniform(currentShader,"yOffset");
-    distanceF = shader_get_uniform( currentShader,"distanceF");
-   shadeType = shader_get_uniform( currentShader,"shadeType");
-    shader_set_uniform_f(distanceF, global.songBeat);
-   // var distanceF = shader_get_uniform(point_distance(0, 0, x2, y2),"distanceF");
-    global.counter += 1;
-    shader_set(currentShader);
-    shader_set_uniform_f(vRes,view_wport[0],view_hport[0]);
-    shader_set_uniform_f(vTime, global.counter);
-    shader_set_uniform_f(vSwitch,global.vswitch);
-    shader_set_uniform_f(yOffset,global.y_offset0);
-    shader_set_uniform_f(shadeType, 1.0);
-
 with(obj_light)
-{ 
-     draw_set_blend_mode(bm_src_color); // bm_src_color
+{   //bm_zero vs bm_src_color
+//bm_zero
+//bm_one
+    //bm_src_color
+    //bm_inv_src_color
+//bm_src_alpha
+//bm_inv_src_alpha
+//bm_dest_alpha
+//bm_inv_dest_alpha
+//bm_dest_color   
+//bm_inv_dest_color
+//bm_src_alpha_sat
+    if (colorType == 0){
+    //bm_src_color
+        //draw_set_blend_mode(blendMode);
+        //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),blendIntensity);
+     draw_set_blend_mode(bm_src_color);
      draw_sprite_ext(spr_light3,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
  
-  //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
+    } else if (colorType == 1){
+        draw_set_blend_mode(blendMode);
+        draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 0, 0),1);
+    
+    }
+    //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
     draw_set_blend_mode(bm_normal);
 }
-shader_reset();
-
-
 
 with(obj_lightBlue)
 {
  //draw_set_blend_mode(blendMode);
  //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(0, 0, 255),0.9);
-  /*
   draw_set_blend_mode(blendMode);
  draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(0, 0, 255),1.0);
  draw_set_blend_mode(bm_normal);  
- */
- draw_set_blend_mode(bm_src_color);
- 
-     draw_sprite_ext(spr_light3,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
- 
-  //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
-    draw_set_blend_mode(bm_normal);
 }
 with(obj_lightRed)
 {
@@ -198,53 +153,15 @@ with(obj_lightRed)
 //bm_dest_color
 //bm_src_alpha
 
-/*
+
  draw_set_blend_mode(blendMode);
  draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 0, 0),0.33);
 
- draw_set_blend_mode(bm_normal); 
- */
- draw_set_blend_mode(bm_src_color);
- 
-     draw_sprite_ext(spr_light3,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
- 
-  //draw_sprite_ext(spr_light,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
-    draw_set_blend_mode(bm_normal); 
+ draw_set_blend_mode(bm_normal);  
 }
 
-    shader_reset();
-   currentShader = shader_blue;
-shader_set(currentShader);
-distanceF = shader_get_uniform( currentShader,"distanceF");
-shadeType = shader_get_uniform( currentShader,"shadeType");
-shader_set_uniform_f(shadeType, 0.0);  
-shader_set_uniform_f(distanceF, global.songBeat);
-
-with(obj_player)
-{ 
-    draw_self();
-     //draw_set_blend_mode(bm_src_color);
-     //draw_sprite_ext(spr_light3,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
-     //draw_set_blend_mode(bm_normal);
-}
-with(obj_lasor1)
-{ 
-    draw_self();
-     //draw_set_blend_mode(bm_src_color);
-     //draw_sprite_ext(spr_light3,0,x*other.surfScale,y*other.surfScale,lightSize*other.surfScale,lightSize*other.surfScale,0,make_color_rgb(255, 255, 255),1);
-     //draw_set_blend_mode(bm_normal);
-}
-shader_reset();
-  currentShader = shader_blue;
-shader_set(currentShader);
-distanceF = shader_get_uniform( currentShader,"distanceF");
-shadeType = shader_get_uniform( currentShader,"shadeType");
-shader_set_uniform_f(shadeType, 1.0);  
-shader_reset();
 surface_reset_target();
-draw_surface_ext(surf,0,0,1/surfScale,1/surfScale,0,c_white,0.9);
-
-
+draw_surface_ext(surf,0,0,1/surfScale,1/surfScale,0,c_white,global.songBeat);
 </string>
           </argument>
         </arguments>

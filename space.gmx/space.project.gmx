@@ -19,6 +19,7 @@
     <sprite>sprites\spr_light</sprite>
     <sprite>sprites\spr_lasor2</sprite>
     <sprite>sprites\spr_enemy_2</sprite>
+    <sprite>sprites\spr_Round_Light</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_main</background>
@@ -36,6 +37,7 @@
     <shader type="GLSLES">shaders\shader02.shader</shader>
     <shader type="GLSLES">shaders\shader0.shader</shader>
     <shader type="GLSLES">shaders\shader_normal.shader</shader>
+    <shader type="GLSLES">shaders\shader_maxAlpha.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\fnt_gameFont</font>
@@ -47,11 +49,13 @@
     <object>objects\obj_lasor1</object>
     <object>objects\obj_lasor2</object>
     <objects name="lights">
-      <object>objects\obj_light</object>
+      <object>objects\obj_light2</object>
       <object>objects\obj_light_lasor2</object>
       <object>objects\obj_lightRed</object>
       <object>objects\obj_lightBlue</object>
       <object>objects\obj_control</object>
+      <object>objects\obj_light</object>
+      <object>objects\obj_Light_Surface</object>
     </objects>
     <objects name="enemy">
       <object>objects\obj_enemy_1</object>

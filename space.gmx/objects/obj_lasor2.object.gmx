@@ -31,27 +31,13 @@ damage = 1;
 width = 1;
 // Y location of the light, we create lots of lights to cover the beams
 lightY = 0;
-instance_create(x, y-lightY, obj_light_lasor2);
-lightY += 30;
-instance_create(x, y-lightY, obj_light_lasor2);
-lightY += 30;
-instance_create(x, y-lightY, obj_light_lasor2);
-lightY += 30;
-instance_create(x, y-lightY, obj_light_lasor2);
-lightY += 30;
-instance_create(x, y-lightY, obj_light_lasor2);
-lightY += 30;
-instance_create(x, y-lightY, obj_light_lasor2);
-lightY += 30;
-instance_create(x, y-lightY, obj_light_lasor2);
-lightY += 30;
-instance_create(x, y-lightY, obj_light_lasor2);
-lightY += 30;
-instance_create(x, y-lightY, obj_light_lasor2);
-
-with (obj_light_lasor2){
-    lightSize = 4 + other.width;
+light1 = instance_create(x, y, obj_light);
+light1.image_yscale = 100.0;
+light1.y = 0;
+with (light1){
+image_yscale = 100.0;
 }
+
 xDiff = 0;
 xStart = x;
 x = x;
@@ -82,7 +68,7 @@ y = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (obj_light_lasor2) {
+            <string>with (light1) {
     instance_destroy();
 }
 </string>
@@ -119,7 +105,7 @@ transy = -50;
 
 //y -= 2;
 //move_towards_point( transx, transy, 2 );
-with (obj_light_lasor2){
+with (light1 ){
 x = other.x + (other.sprite_width / 2);
 //y = other.y + (other.sprite_height /2 );
 }
@@ -167,6 +153,16 @@ if (global.isTouching == 1)
 // draw_line_width_color(50, 50, 300, 50, 4, c_red, c_blue);
 
 //draw_self();
+with (light1){
+draw_set_blend_mode(bm_add);
+draw_self();
+draw_self();
+draw_self();
+draw_self();
+draw_self();
+draw_set_blend_mode(bm_normal);
+image_yscale = 15.0;
+}
 </string>
           </argument>
         </arguments>

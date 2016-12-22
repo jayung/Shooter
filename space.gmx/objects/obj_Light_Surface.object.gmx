@@ -26,6 +26,32 @@
           <argument>
             <kind>1</kind>
             <string>surf = -1;
+surf2 = -1;
+global.lightcounter = 0;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.lightcounter += 1;
 </string>
           </argument>
         </arguments>
@@ -52,6 +78,10 @@
 {
 surface_free(surf);
 }
+if surface_exists(surf2)
+{
+surface_free(surf2);
+}
 </string>
           </argument>
         </arguments>
@@ -74,33 +104,104 @@ surface_free(surf);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//draw_enable_alphablend(false) ;
-//shader_set(shader_maxAlpha);
-//draw_set_colour_write_enable(false, false, false, true) 
+            <string>
 if surface_exists(surf)
 {
-
 surface_set_target(surf);
-draw_clear_alpha(c_black, 0.85);
+draw_clear_alpha(c_black, 1.5);
+//draw_clear(c_black);
+
 draw_set_blend_mode(bm_subtract);
-// draw_set_colour_write_enable(true, true, true, false) ;
 with (obj_light)
     {
-    draw_sprite_ext(sprite_index, image_index, x / 2, y / 2, 1, 1, image_angle, c_white, 1.0);
+    draw_sprite_ext(sprite_index, image_index, x / 2, y / 2, 2, 2, image_angle, c_black, 1);
     }
-    
 draw_set_blend_mode(bm_normal);
 surface_reset_target();
-draw_surface_ext(surf, 0, 0, 2, 2, 0, c_white, 1);
-
+draw_surface_ext(surf, 0, 0, 2, 2, 0, c_black, 1.0);
 }
 else
 {
 surf = surface_create(room_width / 2, room_height / 2);
 }
-//         draw_set_colour_write_enable(true, true, true, false) ;
-//shader_reset();
-//draw_enable_alphablend(true) ;
+        
+/*
+draw_set_blend_mode(bm_normal);
+if surface_exists(surf2){
+    surface_set_target(surf2);
+    draw_clear_alpha(c_black, 0.85);
+    //shader_set(shader_maxAlpha);
+   
+    with (obj_light){
+        draw_set_blend_mode(bm_add);
+        //draw_self();
+        draw_sprite_ext(sprite_index, image_index, x / 2, y / 2, 0.5, 0.5, image_angle, image_blend, 11.0);
+       // draw_sprite_ext(sprite_index, image_index, x / 2, y / 2, 0.4, 0.4, image_angle, image_blend, 0.3);
+        //draw_sprite_ext(sprite_index, image_index, x / 2, y / 2, 0.6, 0.6, image_angle, image_blend, 0.2);
+       // draw_sprite_ext(sprite_index, image_index, x / 2, y / 2, 0.8, 0.8, image_angle, image_blend, 0.1);
+        // draw_sprite_ext(sprite_index, image_index, x / 2, y / 2, 1.0, 1.0, image_angle, image_blend, 0.1);
+        
+        
+       // draw_sprite(sprite_index, image_index, x / 2, y / 2);
+        draw_set_blend_mode(bm_normal);
+    }
+    
+   // shader_reset();
+    surface_reset_target();
+    draw_surface_ext(surf2, 0, 0, 2, 2, 0, c_white, 0.5);
+} else {
+    surf2 = surface_create(room_width / 2, room_height / 2);
+}
+draw_set_blend_mode(bm_normal);
+*/
+with (obj_enemy_2){
+    with (enemyLight) {
+        image_blend = make_colour_hsv(255,255,255);
+    }
+}
+with (obj_light)
+{
+draw_set_blend_mode(bm_subtract);
+
+//image_blend = make_colour_hsv(0, 0, 255);
+//draw_self();
+draw_set_blend_mode(bm_add);
+//image_xscale = 1.4;
+//image_yscale = 1.4;
+//image_blend = make_colour_hsv(255, 255, 255);
+draw_self();
+
+draw_set_blend_mode(bm_normal);
+}
+
+
+with (obj_player_outline)
+{   
+    draw_set_blend_mode(bm_add);
+    currentShader = shader3;
+    shader_set(currentShader);
+    var vRes = shader_get_uniform(currentShader,"vRes");
+    var vTime = shader_get_uniform(currentShader,"vTime");
+    var vSwitch = shader_get_uniform(currentShader,"vSwitch");
+    var yOffset = shader_get_uniform(currentShader,"yOffset");
+    //shader_set_uniform_f(distanceF, global.songBeat);
+   // var distanceF = shader_get_uniform(point_distance(0, 0, x2, y2),"distanceF");
+    global.counter += 1;
+    //shader_set(currentShader);
+    shader_set_uniform_f(vRes,view_wport[0],view_hport[0]);
+    shader_set_uniform_f(vTime, global.counter);
+    shader_set_uniform_f(vSwitch,global.vswitch);
+    shader_set_uniform_f(yOffset,global.y_offset0);
+
+
+    //image_xscale = 0.4;
+    //image_yscale = 0.4;
+   // image_blend = make_colour_hsv(255, 255, 255);
+    shader_set(shader3);
+    draw_self();
+    shader_reset();
+    draw_set_blend_mode(bm_normal);
+}
 </string>
           </argument>
         </arguments>

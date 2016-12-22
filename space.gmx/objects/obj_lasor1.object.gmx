@@ -93,12 +93,14 @@ move_towards_point( transx, transy, 2 );
 lasorLight.x = x + (sprite_width / 2);
 lasorLight.y = y + (sprite_height /2 );
 
+
+image_angle = point_direction(x, y, transx, transy) + 90;
+lasorLight.image_angle = other.image_angle;
 if (y &lt; -20){
     instance_destroy();
 }
 
 
-image_angle = point_direction(x, y, transx, transy) + 90;
 </string>
           </argument>
         </arguments>

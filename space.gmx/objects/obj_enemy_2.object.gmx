@@ -47,12 +47,17 @@ counter = 0;
 
 // Enemies will be considered of a certain element, red blue and green
 // depending on that they will show up as that color, and in some time
-// program weaknesses. TYPE RED, green and blue can range from 0.0 to 1.0 each.
-// The shader draws a minimum value of 0.5 to show colors brightly
+// program weaknesses. TYPE RED, green and blue can range from 0 to 255 each.
+
 // This can leave room for % weaknesses and mixed colors down the line
-tRed = 0.0;
-tBlue = 1.0;
-tGreen = 0.0;
+tRed = 255;
+tGreen = 255;
+tBlue = 255;
+
+
+with (enemyLight) {
+        image_blend = make_colour_hsv(other.tRed, other.tBlue, other.tGreen);
+    }
 </string>
           </argument>
         </arguments>

@@ -27,11 +27,17 @@ varying vec4 v_vColour;
 void main()
 {
     vec4 v_vColour2 = v_vColour;
-    if (v_vColour2.a <= 0.2){
-    //discard;
-    v_vColour2.a = 0.0;
+    if (v_vColour2.a >= 1.0){
+        //v_vColour2.a = 0.5;
+        //discard;
+    
     }
-     v_vColour2.a = 1.0;
+    if (v_vColour2.rgb == vec3(1.0, 1.0, 1.0) ){
+        //v_vColour2.a = 0.1;
+    }
+    //v_vColour2.a -= 1.0;
+   
+//v_vColour2.a /= 0.5;
     gl_FragColor = v_vColour2 * texture2D( gm_BaseTexture, v_vTexcoord );
     
 }

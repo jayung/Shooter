@@ -29,7 +29,7 @@
 lasorCounter = 0;
 lasorFireRate = 60; // when counter gets to 60 you can fire again (1 frame)
 lasorHeightOffset = 8;
-lasorType = 1; //1 is scatter, 2 is big straight lasor
+lasorType = 2; //1 is scatter, 2 is big straight lasor
 lasorWidth = 1; //used for lasor # 2 for now
 // local Varaibles
 charX = 160;
@@ -65,6 +65,16 @@ show_debug_message(shader_get_uniform(shader0,"v_vColour"));
 global.xPlayer = x;
 global.yPlayer = x;
 
+//create an object that looks just like the player but sprite outline
+instance_create(x,y,obj_player_outline);
+
+/*
+instance_create(x,y,obj_player_outline);
+instance_create(x,y,obj_player_outline);
+instance_create(x,y,obj_player_outline);
+instance_create(x,y,obj_player_outline);
+instance_create(x,y,obj_player_outline);
+*/
 </string>
           </argument>
         </arguments>

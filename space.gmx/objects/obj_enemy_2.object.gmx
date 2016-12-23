@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Health = 2; //How much damage until this unit is dead
+            <string>Health = 100; //How much damage until this unit is dead
 velocity = 2; // How fast does he move down the screen
 enemyScore = 5; // How many points is he worth
 

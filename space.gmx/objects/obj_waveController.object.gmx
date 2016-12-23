@@ -56,7 +56,7 @@
     instance_create(0,0,obj_wave_1);
     global.waveCounter = 0;
 } else  if (global.waveCounter == 2){
-    //instance_create(0,0,obj_wave_2);
+    instance_create(0,0,obj_wave_2);
     global.waveCounter = 0;
 }
 </string>

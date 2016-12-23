@@ -104,102 +104,101 @@ surface_free(surf2);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>/*
+    This object handles drawing a lot of the lightning techniques
+    We create what is called a surface.
+    This is an area that we draw to rather than the screen.
+    We first draw pure black. This creates darkness.
+    When we draw colors with a blend mode of subtract its actually
+    erasing pixel data. Causing the effect of light in a pure dark room
+    
+*/
 if surface_exists(surf)
-{
-surface_set_target(surf);
-draw_clear_alpha(c_black, 1.5);
-//draw_clear(c_black);
-
-draw_set_blend_mode(bm_subtract);
-with (obj_light)
-    {
-    draw_sprite_ext(sprite_index, image_index, x / 2, y / 2, 2, 2, image_angle, c_black, 1);
-    }
-draw_set_blend_mode(bm_normal);
-surface_reset_target();
-draw_surface_ext(surf, 0, 0, 2, 2, 0, c_black, 1.0);
-}
-else
-{
-surf = surface_create(room_width / 2, room_height / 2);
+{   
+    // If our surface exists, we can use it
+    surface_set_target(surf);
+    // We draw black to the screen (with how black we want it) 1.0 is max black
+    draw_clear_alpha(c_black, 1.0);
+    
+    // We set our blend mode to erase colors
+    draw_set_blend_mode(bm_subtract);
+    // We draw our light object. Anything drawn to while a surface has a target
+    // You draw to that surface.
+    with (obj_light)
+        {
+        draw_sprite_ext(sprite_index, image_index, x / 2, y / 2, image_xscale * 2, image_yscale * 2, image_angle, c_black, 1);
+        }
+    // You have to set your blend back to normal when done using it
+    // Else everything will remain drawing in that blend mode
+    draw_set_blend_mode(bm_normal);
+    // We have to reset our target when we are done drawing, else everything draws to it
+    surface_reset_target();
+    // Once we draw everything to our surface, we then draw the surface itself
+    // We define a color and an alpha which effects how dark it looks
+    draw_surface_ext(surf, 0, 0, 2, 2, 0, c_black, 1.0);
+} else {
+    // Every room end (never?) we create a new surface
+    surf = surface_create(room_width / 2, room_height / 2);
 }
         
 /*
-draw_set_blend_mode(bm_normal);
-if surface_exists(surf2){
-    surface_set_target(surf2);
-    draw_clear_alpha(c_black, 0.85);
-    //shader_set(shader_maxAlpha);
-   
-    with (obj_light){
-        draw_set_blend_mode(bm_add);
-        //draw_self();
-        draw_sprite_ext(sprite_index, image_index, x / 2, y / 2, 0.5, 0.5, image_angle, image_blend, 11.0);
-       // draw_sprite_ext(sprite_index, image_index, x / 2, y / 2, 0.4, 0.4, image_angle, image_blend, 0.3);
-        //draw_sprite_ext(sprite_index, image_index, x / 2, y / 2, 0.6, 0.6, image_angle, image_blend, 0.2);
-       // draw_sprite_ext(sprite_index, image_index, x / 2, y / 2, 0.8, 0.8, image_angle, image_blend, 0.1);
-        // draw_sprite_ext(sprite_index, image_index, x / 2, y / 2, 1.0, 1.0, image_angle, image_blend, 0.1);
-        
-        
-       // draw_sprite(sprite_index, image_index, x / 2, y / 2);
-        draw_set_blend_mode(bm_normal);
-    }
+    Advance lighting
+    The code above draws a surface, if you don't do anything past this point
+    you get a pure black screen, with lights lighting it
+    No colored lights, just visible / non visible.
     
-   // shader_reset();
-    surface_reset_target();
-    draw_surface_ext(surf2, 0, 0, 2, 2, 0, c_white, 0.5);
-} else {
-    surf2 = surface_create(room_width / 2, room_height / 2);
-}
-draw_set_blend_mode(bm_normal);
 */
+
+// Here we say with every enemy 2, we grab its light and adjust its color
+// It should grab its color data from its variables
 with (obj_enemy_2){
     with (enemyLight) {
         image_blend = make_colour_hsv(255,255,255);
     }
 }
+
+// Here we draw our colors to the screen
+// The first time we draw our lights, it is to a surface to
+// create a lighting effect. basically modifiyng the ALPHA of a black screen
+// Then we draw the lights again after, with colors
 with (obj_light)
 {
-draw_set_blend_mode(bm_subtract);
-
-//image_blend = make_colour_hsv(0, 0, 255);
-//draw_self();
-draw_set_blend_mode(bm_add);
-//image_xscale = 1.4;
-//image_yscale = 1.4;
-//image_blend = make_colour_hsv(255, 255, 255);
-draw_self();
-
-draw_set_blend_mode(bm_normal);
+    draw_set_blend_mode(bm_add);
+    draw_self();
+    draw_set_blend_mode(bm_normal);
 }
 
-
+// Draw the players outline that glows
+// Shader used here
 with (obj_player_outline)
 {   
     draw_set_blend_mode(bm_add);
+    // We use a variable to keep track of our shader
     currentShader = shader3;
     shader_set(currentShader);
+    // We create local variables to 'store' the shaders variables.
+    // Effectively grabbing the shaders variables
     var vRes = shader_get_uniform(currentShader,"vRes");
     var vTime = shader_get_uniform(currentShader,"vTime");
     var vSwitch = shader_get_uniform(currentShader,"vSwitch");
     var yOffset = shader_get_uniform(currentShader,"yOffset");
-    //shader_set_uniform_f(distanceF, global.songBeat);
-   // var distanceF = shader_get_uniform(point_distance(0, 0, x2, y2),"distanceF");
+        
+    // Modify global counter used for this shader
     global.counter += 1;
-    //shader_set(currentShader);
+    // This is how you take a variable from our game and
+    // Send it to the open GL code
+    // WE get the variable above, now we set it
     shader_set_uniform_f(vRes,view_wport[0],view_hport[0]);
     shader_set_uniform_f(vTime, global.counter);
     shader_set_uniform_f(vSwitch,global.vswitch);
     shader_set_uniform_f(yOffset,global.y_offset0);
 
-
-    //image_xscale = 0.4;
-    //image_yscale = 0.4;
-   // image_blend = make_colour_hsv(255, 255, 255);
-    shader_set(shader3);
+   // shader_set(currentShader);
     draw_self();
+    
+    //Once we draw what we want using our shader, reset shader
     shader_reset();
+    // Reset blend mode
     draw_set_blend_mode(bm_normal);
 }
 </string>

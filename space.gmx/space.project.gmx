@@ -22,6 +22,8 @@
     <sprite>sprites\spr_Round_Light2</sprite>
     <sprite>sprites\spr_Round_Light</sprite>
     <sprite>sprites\spr_character_outline</sprite>
+    <sprite>sprites\spr_plus</sprite>
+    <sprite>sprites\spr_OK</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_main</background>
@@ -45,11 +47,7 @@
     <font>fonts\fnt_gameFont</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_btn_start</object>
     <object>objects\obj_main</object>
-    <object>objects\obj_player</object>
-    <object>objects\obj_lasor1</object>
-    <object>objects\obj_lasor2</object>
     <objects name="lights">
       <object>objects\obj_light2</object>
       <object>objects\obj_light_lasor2</object>
@@ -69,6 +67,7 @@
       <object>objects\obj_wave_1</object>
       <object>objects\obj_waveController</object>
       <object>objects\obj_wave_2</object>
+      <object>objects\obj_waveMenu</object>
     </objects>
     <objects name="powerups">
       <object>objects\obj_powerup_rate</object>
@@ -77,7 +76,20 @@
     <objects name="Sound">
       <object>objects\obj_sound_buffer</object>
     </objects>
-    <object>objects\obj_player_outline</object>
+    <objects name="player">
+      <object>objects\obj_lasor2</object>
+      <object>objects\obj_player_outline</object>
+      <object>objects\obj_lasor1</object>
+      <object>objects\obj_player</object>
+    </objects>
+    <objects name="GUI">
+      <object>objects\obj_btn_start</object>
+      <object>objects\obj_wepChange</object>
+      <object>objects\obj_upgradeL1</object>
+      <object>objects\obj_upgradeL1_cannon</object>
+      <object>objects\obj_upgradeL2</object>
+      <object>objects\obj_OKbtn</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>

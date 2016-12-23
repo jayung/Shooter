@@ -26,12 +26,21 @@
           <argument>
             <kind>1</kind>
             <string>/// Main Player 1
+
+// This is used for firing lasor 1
 lasorCounter = 0;
 lasorFireRate = 60; // when counter gets to 60 you can fire again (1 frame)
+// In order to draw the start point of our lasor at the height of our player
+// sprite to look like its shooting we adjust this value
 lasorHeightOffset = 8;
 lasorType = 2; //1 is scatter, 2 is big straight lasor
 lasorWidth = 1; //used for lasor # 2 for now
-// local Varaibles
+L1_upgrade_rate = 1; // What level is your current fire rate for Lasor1
+L1_upgrade_cannons = 1; // how many cannons do you have
+/* 
+    local Varaibles
+*/
+// This is our player characters X and Y
 charX = 160;
 charY = 384;
 x = charX;
@@ -40,41 +49,41 @@ y = charY;
 charWidth = sprite_width/2; //half of sprite width
 charPosSpeed = 25; //how fast it goes to touch location
 
-
+// Most objects created on screen need a light source to see it
 playerLight = instance_create(charX, charY, obj_light);
-playerLight.lightSize = 4;
+//playerLight.lightSize = 4; //used for old lightning technique
 
 
 
 
-//Shader value
+/*
+Shader values
+These variables are used with some of the shaders.
+Specifically, the fancy shader (shader3 or perhaps shader_blue)
+Despite their names, they are actually creating the rainbow effects.
+SIN ( COLOR )
+*/
 //global.maskshader_col = shader_get_uniform( MaskShader, "u_MaskCol" );
-///initialize variables
+//initialize variables
 global.counter = 1;
 global.counter2 = 0;
 global.vswitch = 0;
 //showText = true;
 global.y_offset0 = 0;
-
 global.fCount = 18;
 global.mainSurface = -1;
 
-show_debug_message(shader_get_uniform(shader0,"v_vColour"));
+//show_debug_message(shader_get_uniform(shader0,"v_vColour"));
 
 // We want our global X for lasor2 and perhaps others
+// lasor 2 positions itself using the players coordinates
 global.xPlayer = x;
 global.yPlayer = x;
 
 //create an object that looks just like the player but sprite outline
+// This object follows the player and draws the outlines
 instance_create(x,y,obj_player_outline);
 
-/*
-instance_create(x,y,obj_player_outline);
-instance_create(x,y,obj_player_outline);
-instance_create(x,y,obj_player_outline);
-instance_create(x,y,obj_player_outline);
-instance_create(x,y,obj_player_outline);
-*/
 </string>
           </argument>
         </arguments>
@@ -97,41 +106,93 @@ instance_create(x,y,obj_player_outline);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.isTouching == 1)
+            <string>// Are you touching the screen?
+if (global.isTouching == 1)
 {
+    /*
+        Lasor 1
+        When we fire lasor 1 we set the lasorcounter to the firerate and wait
+        until it reaches 0 before we fire again.
+        lasorType 1 == scatter shot
+    */
     if (lasorCounter == 0 &amp;&amp; lasorType == 1){
-        newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor1);
-        newlasor.xDiff = 2;
-        newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor1);
-        newlasor.xDiff = 0;
-        newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor1);
-        newlasor.xDiff = -2;
+        // We create 3 lasors, and each point to a different X sector
+        if (L1_upgrade_cannons &gt;= 1){
+            // xDiff = 0 points straight
+            newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor1);
+            newlasor.xDiff = 0;
+        } if (L1_upgrade_cannons &gt;= 2){
+            // xDiff = positive points to the right
+            newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor1);
+            newlasor.xDiff = 0.5;
+        } if (L1_upgrade_cannons &gt;= 3){
+            // xDiff = negative points to the left
+            newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor1);
+            newlasor.xDiff = -0.5;
+        } if (L1_upgrade_cannons &gt;= 4){
+            newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor1);
+            newlasor.xDiff = 1;
+        } if (L1_upgrade_cannons &gt;= 5){
+            // xDiff = 0 points straight
+            newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor1);
+            newlasor.xDiff = -1;
+        } if (L1_upgrade_cannons &gt;= 6){
+            newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor1);
+            newlasor.xDiff = 1.5;
+        } if (L1_upgrade_cannons &gt;= 7){
+            newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor1);
+            newlasor.xDiff = -1.5;
+        }
+         if (L1_upgrade_cannons &gt;= 8){
+            newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor1);
+            newlasor.xDiff = 2.0;
+        }
+         if (L1_upgrade_cannons &gt;= 9){
+            newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor1);
+            newlasor.xDiff = -2.0;
+        }
+       
+        // Reset our counter to fire again later on
         lasorCounter = lasorFireRate;
     } else if (lasorCounter == 0 &amp;&amp; lasorType == 2){
+       // We create a big beam lasor but we do not reset lasorCounter
+       // This beam is always on. We create a new instance once, then set
+       // lasorType indicator to a 'middle man' value. 222
        newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_lasor2);
        lasorType = 222;
+       // A player has upgrades to lasors, so lasorWidth is stored here
+       // We pass our players lasorWidth to the actual lasor to use.
        with (newlasor) {
             width = other.lasorWidth;
        }
-     //draw_set_colour(c_white);
-     //draw_line_width_color(charX + charWidth ,charY - lasorHeightOffset, charX + charWidth, charY - lasorHeightOffset - 480, 6, c_lime, c_white);    
-    } else if (lasorType == 222){
-        
+   } else if (lasorType == 222){
+        // If we are here it means lasor 2 has been created
+        // We keep up with the lasor width incase a player gets an upgrade
+        // Though the final design will be you upgrade at the end of the wave
         with (newlasor) {
             width = other.lasorWidth;
        }
+       // We do some offsetting of our characterX and character Width for this lasor
        newlasor.x = charX + charWidth;
     }
 } else {
+    /*
+         We are no longer touching the screen
+    */
+    
+    // If we were firing lasor 2, once you are done touching, destroy the lasor
     if (lasorType == 222){
         with (newlasor){
             instance_destroy();
         }
-        
+        // It is safe to revert back to lasorType2, to create a new beam
+        // When the user touches the screen again
         lasorType = 2;
     }
 }
+
 // Lasor Controller
+// Every frame, count down
 if (lasorCounter &gt; 0){
     lasorCounter -= 1;
 }
@@ -149,14 +210,16 @@ if ( (charX - global.touchX) &lt; charPosSpeed ) &amp;&amp; ( (charX - global.to
     charX = global.touchX;
 }
 
+// We manipulate charX then set our X to it
 x = charX;
+// Our light needs to be offset based on the sprite
 playerLight.x = charX + (sprite_width/2);
 playerLight.y = charY + (sprite_height/2);
 
 
 
 
-// Keep track of player X
+// Keep track of player X and Y coords globally
 global.xPlayer = x;
 global.yPlayer = y;
 

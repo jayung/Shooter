@@ -29,20 +29,18 @@
 damage = 1;
 // How thick is this lasor?
 width = 1;
-// Y location of the light, we create lots of lights to cover the beams
+// Y location set to the top of the screen. We draw it Top down to the player
 lightY = 0;
+// Create the light
 light1 = instance_create(x, y, obj_light);
-light1.image_yscale = 100.0;
+// We scale this light to be the size of the beam
+// If the light sprite ever changes, this will have to be modified to look good
+//light1.image_yscale = 100.0;
 light1.y = 0;
 with (light1){
-image_yscale = 100.0;
+    image_yscale = 30.0;
+    image_xscale = 0.5 + (other.width * 0.05);
 }
-
-xDiff = 0;
-xStart = x;
-x = x;
-
-//sprite_height = 480;
 
 image_xscale *= width;
 y = 0;
@@ -93,32 +91,17 @@ y = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///lasor 1 on step
-//y -= 2;
+            <string>
 
-transx = x;
-transy = -50;
-//point_distance(x1, y1, x2, y2);
-//y += (transy - y)/60;
-//x += (transx - x)/60;
-
-
-//y -= 2;
-//move_towards_point( transx, transy, 2 );
-with (light1 ){
-x = other.x + (other.sprite_width / 2);
-//y = other.y + (other.sprite_height /2 );
-}
-
-
-if (y &lt; -20){
-//    instance_destroy();
-}
-
-// draw_line_width_color(global.xPlayer + (obj_player.sprite_width/2), global.yPlayer, global.xPlayer + (obj_player.sprite_width/2), global.yPlayer - 480, 8, c_lime, c_white);
+// We set our lasor X to the players X
 x = global.xPlayer + (obj_player.sprite_width/2) - (width/2);
 y = global.yPlayer - 390;
 image_angle = point_direction(x, y, x, y+300) + 90;
+
+// We set our light X to our light X offset
+with (light1 ){
+x = other.x + (other.sprite_width / 2);
+}
 </string>
           </argument>
         </arguments>
@@ -141,27 +124,20 @@ image_angle = point_direction(x, y, x, y+300) + 90;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//draw_self();
-if (global.isTouching == 1)
-{
-//     draw_set_colour(c_white);
-//     draw_line_width_color(x, y, x, y - 480, 8, c_lime, c_white);    
-
-}
+            <string>
  draw_set_colour(c_white);
  draw_line_width_color(global.xPlayer + (obj_player.sprite_width/2) - 1, global.yPlayer, global.xPlayer + (obj_player.sprite_width/2) - 1, global.yPlayer - 480, width, c_lime, c_white);
-// draw_line_width_color(50, 50, 300, 50, 4, c_red, c_blue);
 
-//draw_self();
 with (light1){
-draw_set_blend_mode(bm_add);
-draw_self();
-draw_self();
-draw_self();
-draw_self();
-draw_self();
-draw_set_blend_mode(bm_normal);
-image_yscale = 15.0;
+    image_xscale = 0.5 + (other.width * 0.1);
+    draw_set_blend_mode(bm_add);
+    draw_self();
+    draw_self();
+    draw_self();
+    draw_self();
+    draw_self();
+    draw_set_blend_mode(bm_normal);
+    //sprite_width = other.sprite_width + 10;
 }
 </string>
           </argument>

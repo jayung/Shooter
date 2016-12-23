@@ -59,7 +59,7 @@ enemyCounter = 0; // how long the game has gone on dictates what enemy spawns
 // By calling with (spawnEnemy) and adjusting any local variables
 var spawnEnemy; 
 enemyCounter += 1; //add one to total counter
-if (enemyCounter % 120) == 0{
+if (enemyCounter) == 4{
     // Spawn enemy with no modifications
     spawnEnemy = instance_create(60, -25, obj_enemy_1);
     // Slightly advanced example of spawning an enemy
@@ -86,7 +86,10 @@ if (enemyCounter % 120) == 0{
     instance_create(90, -25, obj_powerup_width);
     
 } 
-
+if (enemyCounter &gt; 330){
+    instance_create(0,0,obj_waveMenu);
+    instance_destroy();
+}
 
 </string>
           </argument>

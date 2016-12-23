@@ -25,11 +25,19 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>damage = 1;
+            <string>// How much damage does this do on contact?
+damage = 1;
+// We create a light object to see the lasor
 lasorLight = instance_create(x, y, obj_light);
-lasorLight.lightSize = 2;
-lasorLight.lightType = 0.0;
+//lasorLight.lightSize = 2;
+//lasorLight.lightType = 0.0;
+
+
+// When we fire a lasor, we point the trajecory to Y = -20, the despawn point
+// We draw a line there, and plot an X value.
+// When you create a new lasor object be sure to set this value
 xDiff = 1;
+// We need to keep track of where we started, to know where to plot a line to/from
 xStart = x;
 </string>
           </argument>
@@ -53,7 +61,8 @@ xStart = x;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (lasorLight) {
+            <string>// Also destroy the light when this object gets destroyed
+with (lasorLight) {
     instance_destroy();
 }
 </string>
@@ -81,21 +90,33 @@ xStart = x;
             <string>///lasor 1 on step
 //y -= 2;
 
+// Our destination point is ( value , -50 ) for [x, y]
+// We have a multiplier of 100 for how far away each bullet can be
 transx = xStart - (xDiff*100);
 transy = -50;
-//point_distance(x1, y1, x2, y2);
-//y += (transy - y)/60;
-//x += (transx - x)/60;
 
-
-
+// We move towards this point at a velocity of 2
 move_towards_point( transx, transy, 2 );
+
+// We offset our lasor Light
+
 lasorLight.x = x + (sprite_width / 2);
 lasorLight.y = y + (sprite_height /2 );
 
-
+// Rotate our lasor to point towards the location
+// Since its default a up and down line, we offset by 90
 image_angle = point_direction(x, y, transx, transy) + 90;
+
+// If our light wasn't a perfect circle, we could also set the lights
+// Image angle, to rotate with our lasor
 lasorLight.image_angle = other.image_angle;
+
+/*
+    Object Despawn Criteria
+    Modify this if there are multiple ways a PLAYER lasor can be despawned
+    off screen. All lasors should despawn on enemy contact within the enemy class
+    not here.
+*/
 if (y &lt; -20){
     instance_destroy();
 }

@@ -28,6 +28,19 @@
             <string>damage = 1;
 lasorLight = instance_create(x, y, obj_light);
 lasorLight.lightSize = 2;
+
+tRed = 255;
+tGreen = 0;
+tBlue = 0; 
+
+image_blend = make_color_rgb(other.tRed, other.tBlue, other.tGreen);
+with (lasorLight) {
+        tRed = other.tRed;
+        tBlue = other.tBlue;
+        tGreen = other.tGreen;
+        image_blend = make_color_rgb(tRed, tBlue, tGreen);
+        //make_colour_hsv(other.tRed, other.tBlue, other.tGreen);
+    }
 </string>
           </argument>
         </arguments>

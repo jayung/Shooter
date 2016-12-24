@@ -49,6 +49,10 @@ instance_create(0,0, obj_waveController);
 
 // our total score as a player
 global.playerScore = 0;
+// At start of wave, keep track of that score.
+global.startScore = 0;
+// credits to spend
+global.playerCredits = 0;
 //create light for score area
 playerLight = instance_create(5, 0, obj_light);
 playerLight.lightSize = 8;

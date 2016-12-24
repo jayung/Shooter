@@ -53,9 +53,18 @@
             <string>if (global.waveCounter == 0){
 
 } else if (global.waveCounter == 1){
+    // keep Track of score at the start of each wave
+    global.startScore = global.playerScore;
     instance_create(0,0,obj_wave_1);
     global.waveCounter = 0;
 } else  if (global.waveCounter == 2){
+    // keep Track of score at the start of each wave
+    global.startScore = global.playerScore;
+    instance_create(0,0,obj_wave_1);
+    global.waveCounter = 0;
+} else  if (global.waveCounter == 3){
+    // keep Track of score at the start of each wave
+    global.startScore = global.playerScore;
     instance_create(0,0,obj_wave_2);
     global.waveCounter = 0;
 }

@@ -84,6 +84,12 @@ global.yPlayer = x;
 // This object follows the player and draws the outlines
 instance_create(x,y,obj_player_outline);
 
+
+// colors of light and lasor of player
+tRed = 0;
+tBlue = 255;
+tGreen = 0;
+
 </string>
           </argument>
         </arguments>

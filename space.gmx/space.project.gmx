@@ -25,6 +25,17 @@
       <sprite>sprites\spr_plus</sprite>
       <sprite>sprites\spr_cross</sprite>
       <sprite>sprites\spr_bubble</sprite>
+      <sprites name="wepSelect">
+        <sprite>sprites\spr_blueBeam</sprite>
+        <sprite>sprites\spr_redBeam</sprite>
+        <sprite>sprites\spr_greenBeam</sprite>
+        <sprite>sprites\spr_blueLasor</sprite>
+        <sprite>sprites\spr_redLasor</sprite>
+        <sprite>sprites\spr_greenLasor</sprite>
+        <sprite>sprites\spr_blueRocket</sprite>
+        <sprite>sprites\spr_redRocket</sprite>
+        <sprite>sprites\spr_greenRocket</sprite>
+      </sprites>
     </sprites>
     <sprites name="lasor">
       <sprite>sprites\spr_lasor1</sprite>
@@ -104,6 +115,15 @@
       <objects name="wepSelect">
         <object>objects\obj_cross</object>
         <object>objects\obj_bubble</object>
+        <object>objects\obj_blueBeam</object>
+        <object>objects\obj_redBeam</object>
+        <object>objects\obj_greenBeam</object>
+        <object>objects\obj_blueLasor</object>
+        <object>objects\obj_redLasor</object>
+        <object>objects\obj_greenLasor</object>
+        <object>objects\obj_redRocket</object>
+        <object>objects\obj_blueRocket</object>
+        <object>objects\obj_greenRocket</object>
       </objects>
     </objects>
   </objects>

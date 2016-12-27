@@ -152,7 +152,7 @@ if surface_exists(surf)
 // Here we say with every enemy 2, we grab its light and adjust its color
 // It should grab its color data from its variables
 with (obj_light) {
-        image_blend = make_color_rgb(tRed, tBlue, tGreen);
+        image_blend = make_color_rgb(tRed, tGreen, tBlue);
     }
 
 // Here we draw our colors to the screen

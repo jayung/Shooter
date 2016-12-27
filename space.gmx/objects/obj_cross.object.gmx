@@ -57,9 +57,161 @@ if mouse_check_button_pressed(mb_left) &amp;&amp; point_in_rectangle(mouse_x, mo
 } 
 if mouse_check_button_released(mb_left)
 {
+    distance = 9999;
+    closestObj = -1;
+    if (crossTouch == 1){
+    /* ---                  ---             --- */
+        with (obj_blueBeam){
+            pointDistance = distance_to_point(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0));
+            if (pointDistance &lt; other.distance){
+                other.distance = pointDistance;
+                other.closestObj = obj_blueBeam
+            }
+        }
+     /* ---                  ---             --- */
+        with (obj_redBeam){
+            pointDistance = distance_to_point(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0));
+            show_debug_message(string(      pointDistance  ));
+            if (pointDistance &lt; other.distance){
+                other.distance = pointDistance;
+                other.closestObj = obj_redBeam
+            }
+        }
+     /* ---                  ---             --- */
+        with (obj_greenBeam){
+            pointDistance = distance_to_point(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0));
+            show_debug_message(string(      pointDistance  ));
+            if (pointDistance &lt; other.distance){
+                other.distance = pointDistance;
+                other.closestObj = obj_greenBeam
+            }
+        } 
+        
+     /* ---                  ---             --- */
+        with (obj_blueLasor){
+            pointDistance = distance_to_point(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0));
+            show_debug_message(string(      pointDistance  ));
+            if (pointDistance &lt; other.distance){
+                other.distance = pointDistance;
+                other.closestObj = obj_blueLasor
+            }
+        } 
+        
+     /* ---                  ---             --- */
+        with (obj_redLasor){
+           pointDistance = distance_to_point(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0));
+            show_debug_message(string(      pointDistance  ));
+            if (pointDistance &lt; other.distance){
+                other.distance = pointDistance;
+                other.closestObj = obj_redLasor
+            }
+        } 
+        
+     /* ---                  ---             --- */
+        with (obj_greenLasor){
+           pointDistance = distance_to_point(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0));
+            show_debug_message(string(      pointDistance  ));
+            if (pointDistance &lt; other.distance){
+                other.distance = pointDistance;
+                other.closestObj = obj_greenLasor
+            }
+        } 
+        
+     /* ---                  ---             --- */
+        with (obj_blueRocket){
+          pointDistance = distance_to_point(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0));
+            show_debug_message(string(      pointDistance  ));
+            if (pointDistance &lt; other.distance){
+                other.distance = pointDistance;
+                other.closestObj = obj_blueRocket
+            }
+        } 
+        
+     /* ---                  ---             --- */
+        with (obj_greenRocket){
+            pointDistance = distance_to_point(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0));
+            show_debug_message(string(      pointDistance  ));
+            if (pointDistance &lt; other.distance){
+                other.distance = pointDistance;
+                other.closestObj = obj_greenRocket
+            }
+        } 
+        
+     /* ---                  ---             --- */
+        with (obj_redRocket){
+           pointDistance = distance_to_point(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0));
+            show_debug_message(string(      pointDistance  ));
+            if (pointDistance &lt; other.distance){
+                other.distance = pointDistance;
+                other.closestObj = obj_redRocket
+            }
+        } 
+        
+   
+     //////
+     if (other.closestObj == obj_redRocket){
+        obj_player.lasorType = 3;
+        obj_player.tRed = 255;
+        obj_player.tBlue = 0;
+        obj_player.tGreen = 0;
+        
+     }
+     if (other.closestObj == obj_greenRocket){
+        obj_player.lasorType = 3;
+        obj_player.tGreen = 255;
+        obj_player.tRed = 0;
+        obj_player.tBlue = 0;
+     }
+     if (other.closestObj == obj_blueRocket){
+        obj_player.lasorType = 3;
+        obj_player.tBlue = 255;
+        obj_player.tRed = 0;
+        obj_player.tGreen = 0;
+     }
+      if (other.closestObj == obj_redBeam){
+        obj_player.lasorType = 2;
+        obj_player.tRed = 255;
+        obj_player.tBlue = 0;
+        obj_player.tGreen = 0;
+     }
+     if (other.closestObj == obj_greenBeam){
+        obj_player.lasorType = 2;
+        obj_player.tGreen = 255;
+        obj_player.tRed = 0;
+        obj_player.tBlue = 0;
+     }
+     if (other.closestObj == obj_blueBeam){
+        obj_player.lasorType = 2;
+        obj_player.tBlue = 255;
+        obj_player.tRed = 0;
+        obj_player.tGreen = 0;
+     }
+      if (other.closestObj == obj_redLasor){
+        obj_player.lasorType = 1;
+        obj_player.tRed = 255;
+        obj_player.tBlue = 0;
+        obj_player.tGreen = 0;
+     }
+     if (other.closestObj == obj_greenLasor){
+        obj_player.lasorType = 1;
+        obj_player.tGreen = 255;
+        obj_player.tRed = 0;
+        obj_player.tBlue = 0;
+     }
+     if (other.closestObj == obj_blueLasor){
+        obj_player.lasorType = 1;
+        obj_player.tBlue = 255;
+        obj_player.tRed = 0;
+        obj_player.tGreen = 0;
+     }
+    
+     show_debug_message(string(      closestObj   ));
+    }
     crossTouch = 0;
 }
-show_debug_message(string(      crossTouch   ));
+//show_debug_message(string(      crossTouch   ));
+//show_debug_message(string(      device_mouse_x_to_gui(0)   ));
+//show_debug_message(string(      device_mouse_y_to_gui(0)   ));
 </string>
           </argument>
         </arguments>
@@ -89,9 +241,38 @@ if (crossTouch == 1){
  draw_set_colour(c_white);
  draw_line_width_color(x + (sprite_width / 2), y + (sprite_height / 2), mouse_x, mouse_y, 1, c_white, c_white);
 
- with (obj_bubble){
+ with (obj_blueBeam){
     draw_self();
  }
+ 
+  with (obj_redBeam){
+    draw_self();
+ }
+  with (obj_greenBeam){
+    draw_self();
+ }
+  with (obj_blueLasor){
+    draw_self();
+ }
+  with (obj_redLasor){
+    draw_self();
+ }
+  with (obj_greenLasor){
+    draw_self();
+ }
+  with (obj_blueRocket){
+    draw_self();
+ }
+  with (obj_greenRocket){
+    draw_self();
+ }
+  with (obj_redRocket){
+    draw_self();
+ }
+  with (obj_blueBeam){
+    draw_self();
+ }
+ 
  
 }
 

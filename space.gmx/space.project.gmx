@@ -10,20 +10,30 @@
     <sound>sound\sound_music</sound>
   </sounds>
   <sprites name="sprites">
-    <sprite>sprites\spr_btn_start</sprite>
     <sprite>sprites\spr_character</sprite>
     <sprite>sprites\spr_powerup_rate</sprite>
-    <sprite>sprites\spr_enemy_1</sprite>
-    <sprite>sprites\spr_lasor1</sprite>
-    <sprite>sprites\spr_light3</sprite>
-    <sprite>sprites\spr_light</sprite>
-    <sprite>sprites\spr_lasor2</sprite>
-    <sprite>sprites\spr_enemy_2</sprite>
-    <sprite>sprites\spr_Round_Light2</sprite>
-    <sprite>sprites\spr_Round_Light</sprite>
     <sprite>sprites\spr_character_outline</sprite>
-    <sprite>sprites\spr_plus</sprite>
-    <sprite>sprites\spr_OK</sprite>
+    <sprites name="light">
+      <sprite>sprites\spr_Round_Light2</sprite>
+      <sprite>sprites\spr_light</sprite>
+      <sprite>sprites\spr_light3</sprite>
+      <sprite>sprites\spr_Round_Light</sprite>
+    </sprites>
+    <sprites name="GUI">
+      <sprite>sprites\spr_OK</sprite>
+      <sprite>sprites\spr_btn_start</sprite>
+      <sprite>sprites\spr_plus</sprite>
+      <sprite>sprites\spr_cross</sprite>
+      <sprite>sprites\spr_bubble</sprite>
+    </sprites>
+    <sprites name="lasor">
+      <sprite>sprites\spr_lasor1</sprite>
+      <sprite>sprites\spr_lasor2</sprite>
+    </sprites>
+    <sprites name="enemy">
+      <sprite>sprites\spr_enemy_1</sprite>
+      <sprite>sprites\spr_enemy_2</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\back_main</background>
@@ -84,11 +94,17 @@
     </objects>
     <objects name="GUI">
       <object>objects\obj_btn_start</object>
-      <object>objects\obj_wepChange</object>
-      <object>objects\obj_upgradeL1</object>
-      <object>objects\obj_upgradeL1_cannon</object>
-      <object>objects\obj_upgradeL2</object>
-      <object>objects\obj_OKbtn</object>
+      <objects name="waveMenu">
+        <object>objects\obj_upgradeL1</object>
+        <object>objects\obj_wepChange</object>
+        <object>objects\obj_upgradeL1_cannon</object>
+        <object>objects\obj_OKbtn</object>
+        <object>objects\obj_upgradeL2</object>
+      </objects>
+      <objects name="wepSelect">
+        <object>objects\obj_cross</object>
+        <object>objects\obj_bubble</object>
+      </objects>
     </objects>
   </objects>
   <rooms name="rooms">

@@ -67,6 +67,9 @@ if !audio_is_playing(musicPlayer)
    
    
 //instance_create(0,0,obj_waveMenu);
+// Create the crosshair for item select
+instance_create(156, 220, obj_cross);
+instance_create(156, 220, obj_bubble);
 
 </string>
           </argument>

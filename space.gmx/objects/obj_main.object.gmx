@@ -49,6 +49,10 @@ instance_create(0,0, obj_waveController);
 
 // our total score as a player
 global.playerScore = 0;
+// At start of wave, keep track of that score.
+global.startScore = 0;
+// credits to spend
+global.playerCredits = 0;
 //create light for score area
 playerLight = instance_create(5, 0, obj_light);
 playerLight.lightSize = 8;
@@ -63,6 +67,26 @@ if !audio_is_playing(musicPlayer)
    
    
 //instance_create(0,0,obj_waveMenu);
+// Create the crosshair for item select
+instance_create(156, 220, obj_cross);
+// Create the bubble for the item select
+instance_create(156, 220, obj_bubble);
+// All item select objects get created now
+instance_create(91, 131, obj_redLasor);
+instance_create(160, 98, obj_redBeam);
+instance_create(229, 133, obj_redRocket);
+// -
+instance_create(275, 192, obj_greenLasor);
+instance_create(260, 271, obj_greenBeam);
+instance_create(192, 333, obj_greenRocket);
+// -
+instance_create(128, 333, obj_blueLasor);
+instance_create(58, 271, obj_blueBeam);
+instance_create(45, 192, obj_blueRocket);
+// -
+
+
+
 
 </string>
           </argument>

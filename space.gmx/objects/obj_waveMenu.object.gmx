@@ -40,6 +40,9 @@ instance_create(32,96,obj_upgradeL1_cannon);
 instance_create(32,160,obj_upgradeL2);
 instance_create(32,300,obj_OKbtn);
 
+global.playerCredits += global.playerScore - global.startScore;
+
+
 </string>
           </argument>
         </arguments>
@@ -96,6 +99,8 @@ draw_set_colour(c_aqua);
 draw_text(96, 32, "L1 Rate Level: " + string(L1_upgrade_rate));
 draw_text(96, 96, "L1 Cannon Level: " + string(L1_upgrade_cannons));
 draw_text(96, 160, "L2 Width Level: " + string(lasorWidth));
+draw_text(100, 0, "Credits: " + string(global.playerCredits));
+
 // Draw GUI
 with (obj_upgradeL1) {
     draw_self();
@@ -131,7 +136,8 @@ with (obj_OKbtn) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>////
+</string>
           </argument>
         </arguments>
       </action>

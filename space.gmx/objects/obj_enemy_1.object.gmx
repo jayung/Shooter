@@ -44,6 +44,26 @@ charWidth = sprite_width / 2 - 1;
 
 // We will use a general counter incase we do SINE movement.
 counter = 0;
+
+
+// Enemies will be considered of a certain element, red blue and green
+// depending on that they will show up as that color, and in some time
+// program weaknesses. TYPE RED, green and blue can range from 0 to 255 each.
+
+// This can leave room for % weaknesses and mixed colors down the line
+tRed = 255;
+tGreen = 0;
+tBlue = 0; 
+
+
+image_blend = make_color_rgb(other.tRed, other.tBlue, other.tGreen);
+with (enemyLight) {
+        tRed = other.tRed;
+        tBlue = other.tBlue;
+        tGreen = other.tGreen;
+        image_blend = make_color_rgb(tRed, tBlue, tGreen);
+        //make_colour_hsv(other.tRed, other.tBlue, other.tGreen);
+    }
 </string>
           </argument>
         </arguments>
@@ -66,7 +86,7 @@ counter = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.playerScore += enemyScore;
+            <string>
 with (enemyLight) {
     instance_destroy();
 }
@@ -110,6 +130,7 @@ enemyLight.y = y + (sprite_height/2);
 
 // Check health
 if (Health &lt;= 0){
+    global.playerScore += enemyScore;
     instance_destroy();
 }
 // Fire the lasor if...
@@ -155,6 +176,33 @@ if (y &gt; 500){
 with instance_place(x, y, obj_lasor1) {
                 instance_destroy();
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_lasor2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Health -= obj_lasor2.damage;
+with instance_place(x, y, obj_lasor2) {
+ //               instance_destroy();
+}
+
 </string>
           </argument>
         </arguments>

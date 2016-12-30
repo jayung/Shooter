@@ -30,7 +30,7 @@ velocity = 2; // How fast does he move down the screen
 enemyScore = 5; // How many points is he worth
 
 // Create the enemy light
-enemyLight = instance_create(x, y, obj_lightRed);
+enemyLight = instance_create(x, y, obj_light);
 // How big is that light?
 enemyLight.lightSize = 4;
 
@@ -46,6 +46,26 @@ charWidth = sprite_width / 2 - 1;
 counter = 0;
 coordinateIndex = 0;
 forward = 1;
+
+depth = -10;
+// Enemies will be considered of a certain element, red blue and green
+// depending on that they will show up as that color, and in some time
+// program weaknesses. TYPE RED, green and blue can range from 0 to 255 each.
+
+// This can leave room for % weaknesses and mixed colors down the line
+tRed = 255;
+tGreen = 0;
+tBlue = 0; 
+
+
+image_blend = make_color_rgb(other.tRed, other.tBlue, other.tGreen);
+with (enemyLight) {
+        tRed = other.tRed;
+        tBlue = other.tBlue;
+        tGreen = other.tGreen;
+        image_blend = make_color_rgb(tRed, tBlue, tGreen);
+        //make_colour_hsv(other.tRed, other.tBlue, other.tGreen);
+    }
 </string>
           </argument>
         </arguments>

@@ -106,7 +106,7 @@ if (y &lt; -20){
 }
 
 
-image_angle = point_direction(x, y, transx, transy) + 90;
+image_angle = point_direction(x, y, tempx, tempy) + 90;
 </string>
           </argument>
         </arguments>

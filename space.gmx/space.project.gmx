@@ -44,7 +44,10 @@
     <sprites name="enemy">
       <sprite>sprites\spr_enemy_1</sprite>
       <sprite>sprites\spr_enemy_2</sprite>
+      <sprite>sprites\spr_enemy_med</sprite>
+      <sprite>sprites\spr_enemy_3</sprite>
     </sprites>
+    <sprite>sprites\sprite27</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_main</background>
@@ -80,6 +83,7 @@
     </objects>
     <objects name="enemy">
       <object>objects\obj_enemy_1</object>
+      <object>objects\obj_enemy_4</object>
       <object>objects\obj_enemy_2</object>
       <object>objects\obj_enemy_lasor1</object>
       <object>objects\obj_enemy_3</object>

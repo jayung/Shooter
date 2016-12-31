@@ -124,12 +124,13 @@ x = other.x + (other.sprite_width / 2);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
- draw_set_colour(c_white);
- draw_line_width_color(global.xPlayer + (obj_player.sprite_width/2) - 1, global.yPlayer, global.xPlayer + (obj_player.sprite_width/2) - 1, global.yPlayer - 480, width, c_lime, c_white);
+            <string> playerColor =  make_color_rgb(obj_player.tRed, obj_player.tGreen, obj_player.tBlue);
+ //draw_set_colour(playerColor);
+ draw_line_width_color(global.xPlayer + (obj_player.sprite_width/2) - 1, global.yPlayer, global.xPlayer + (obj_player.sprite_width/2) - 1, global.yPlayer - 480, width, playerColor, playerColor);
 
 with (light1){
     image_xscale = 0.5 + (other.width * 0.1);
+    image_blend = make_color_rgb(obj_player.tRed, obj_player.tGreen, obj_player.tBlue);
     draw_set_blend_mode(bm_add);
     draw_self();
     draw_self();

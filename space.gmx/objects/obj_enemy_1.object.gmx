@@ -61,7 +61,7 @@ with (enemyLight) {
         tRed = other.tRed;
         tBlue = other.tBlue;
         tGreen = other.tGreen;
-        image_blend = make_color_rgb(tRed, tBlue, tGreen);
+        image_blend = make_color_rgb(tRed, tGreen, tBlue);
         //make_colour_hsv(other.tRed, other.tBlue, other.tGreen);
     }
 </string>
@@ -136,7 +136,19 @@ if (Health &lt;= 0){
 // Fire the lasor if...
 if (lasorCounter == 0){
         // Create a lasor instance
-        instance_create(x + charWidth, y + lasorHeightOffset, obj_enemy_lasor1);
+        lasorShot = instance_create(x + charWidth, y + lasorHeightOffset, obj_enemy_lasor1);
+        with (lasorShot) {
+            tRed = other.tRed;
+            tBlue = other.tBlue;
+            tGreen = other.tGreen;
+            image_blend = make_color_rgb(tRed, tGreen, tBlue);
+                with (lasorLight) {
+                tRed = other.tRed;
+                tBlue = other.tBlue;
+                tGreen = other.tGreen;
+                image_blend = make_color_rgb(tRed, tGreen, tBlue);
+            }
+        }
         // Reset our lasorCounter to fire rate
         lasorCounter = lasorFireRate;
     }
@@ -149,6 +161,33 @@ if (lasorCounter &gt; 0){
 //  If out of bounds then..
 if (y &gt; 500){
     instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_missle">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with instance_place(x, y, obj_missle) {
+show_debug_message(string(    "Rocket hitting small enemy " + string((damage * 0.1)) + " damage "   ));
+                other.Health -= (damage * 0.10);
+                instance_destroy();
 }
 </string>
           </argument>
@@ -172,8 +211,10 @@ if (y &gt; 500){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Health -= obj_lasor1.damage;
+            <string>//Health -= obj_lasor1.damage;
 with instance_place(x, y, obj_lasor1) {
+show_debug_message(string(    "Scatter Shot Lasor hitting small enemy " + string(damage) + " damage "   ));
+                other.Health -= damage;
                 instance_destroy();
 }
 </string>
@@ -198,9 +239,12 @@ with instance_place(x, y, obj_lasor1) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Health -= obj_lasor2.damage;
+            <string>//Health -= obj_lasor2.damage;
 with instance_place(x, y, obj_lasor2) {
- //               instance_destroy();
+show_debug_message(string(    "Beam Lasor hitting small enemy " + string((damage * 0.1)) + " damage "   ));
+ 
+                other.Health -= (damage * 0.1);
+//              instance_destroy();
 }
 
 </string>

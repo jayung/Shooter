@@ -33,7 +33,7 @@ lasorFireRate = 60; // when counter gets to 60 you can fire again (1 frame)
 // In order to draw the start point of our lasor at the height of our player
 // sprite to look like its shooting we adjust this value
 lasorHeightOffset = 8;
-lasorType = 3; //1 is scatter, 2 is big straight lasor
+lasorType = 1; //1 is scatter, 2 is big straight lasor
 lasorWidth = 1; //used for lasor # 2 for now
 L1_upgrade_rate = 1; // What level is your current fire rate for Lasor1
 L1_upgrade_cannons = 1; // how many cannons do you have

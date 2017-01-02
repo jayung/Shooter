@@ -88,15 +88,37 @@ transy = -50;
 //point_distance(x1, y1, x2, y2);
 //y += (transy - y)/60;
 //x += (transx - x)/60;
-var tempx = 0;
-var tempy = 0;
+var tempx = x;
+var tempy = -201;
 
 with instance_nearest(x, y, obj_enemy_3){
-    tempx = x;
-    tempy = y;
+    tempx = x + 16; //half width of sprite
+    tempy = y + 16; //half width of sprite
 }
 
+
+with instance_nearest(x, y, obj_enemy_2){
+    if (distance_to_point(x, y) &lt; distance_to_point(tempx, tempy)){
+        tempx = x + 16; //half width of sprite
+        tempy = y + 16; //half width of sprite
+    }
+}
+
+with instance_nearest(x, y, obj_enemy_1){
+    if (distance_to_point(x, y) &lt; distance_to_point(tempx, tempy)){
+        tempx = x + 16; //half width of sprite
+        tempy = y + 16; //half width of sprite
+    }
+}
+
+
+
 move_towards_point(tempx, tempy, 2 );
+
+
+// Rotate our lasor to point towards the location
+// Since its default a up and down line, we offset by 90
+image_angle = point_direction(x, y, tempx, tempy) + 90;
 
 lasorLight.x = x + (sprite_width / 2);
 lasorLight.y = y + (sprite_height /2 );
@@ -104,9 +126,6 @@ lasorLight.y = y + (sprite_height /2 );
 if (y &lt; -20){
     instance_destroy();
 }
-
-
-image_angle = point_direction(x, y, transx, transy) + 90;
 </string>
           </argument>
         </arguments>

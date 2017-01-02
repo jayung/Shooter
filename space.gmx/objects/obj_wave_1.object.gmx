@@ -62,6 +62,24 @@ enemyCounter += 1; //add one to total counter
 if (enemyCounter) == 4{
     // Spawn enemy with no modifications
     spawnEnemy = instance_create(60, -25, obj_enemy_1);
+    // Spawn enemy with no modifications
+    spawnEnemy = instance_create(30, -25, obj_enemy_1);
+
+    with (spawnEnemy){
+        tRed = 255;
+        tGreen = 255;
+        tBlue = 0; 
+        image_blend = make_color_rgb(tRed, tGreen, tBlue);
+        with (enemyLight){
+            tRed = other.tRed;
+            tBlue = other.tBlue;
+            tGreen = other.tGreen;
+            image_blend = make_color_rgb(tRed, tGreen, tBlue);
+        }
+    }
+
+    
+    
     // Slightly advanced example of spawning an enemy
     // We spawn the enemy with instance_create
     spawnEnemy = instance_create(120, -25, obj_enemy_2);
@@ -82,11 +100,65 @@ if (enemyCounter) == 4{
    spawnEnemy = instance_create(120, -25 - (25*4), obj_enemy_2);
    spawnEnemy = instance_create(120, -25 - (25*5), obj_enemy_2);
    
-    instance_create(30, -25, obj_powerup_rate);
-    instance_create(90, -25, obj_powerup_width);
-    
+    //instance_create(30, -25, obj_powerup_rate);
+    //instance_create(90, -25, obj_powerup_width);
+    spawnEnemy = instance_create(90, -25, obj_enemy_4);
 } 
-if (enemyCounter &gt; 330){
+if (enemyCounter) == 330{
+    // Spawn enemy with no modifications
+    spawnEnemy = instance_create(60, -25, obj_enemy_1);
+    // Slightly advanced example of spawning an enemy
+    // We spawn the enemy with instance_create
+    spawnEnemy = instance_create(120, -25, obj_enemy_2);
+    // For every spawnEnemy (only 1, ever)
+    with (spawnEnemy){
+        // It has a Create step to populate 'enemyLight' value
+        with (enemyLight){
+            // For every enemyLight (only ever 1). Destroy it.
+            instance_destroy();
+        }
+        // In the scope of spawnEnemy, create enemyLight again, but blue!
+        enemyLight = instance_create(x,y, obj_lightBlue);
+        enemyLight.lightSize = 4;
+    }
+   spawnEnemy = instance_create(120, -25 - (25*1), obj_enemy_2);
+   spawnEnemy = instance_create(120, -25 - (25*2), obj_enemy_2);
+   spawnEnemy = instance_create(120, -25 - (25*3), obj_enemy_2);
+   spawnEnemy = instance_create(120, -25 - (25*4), obj_enemy_2);
+   spawnEnemy = instance_create(120, -25 - (25*5), obj_enemy_2);
+   
+    //instance_create(30, -25, obj_powerup_rate);
+    //instance_create(90, -25, obj_powerup_width);
+    spawnEnemy = instance_create(90, -25, obj_enemy_4);
+} 
+if (enemyCounter) == 660{
+    // Spawn enemy with no modifications
+    spawnEnemy = instance_create(60, -25, obj_enemy_1);
+    // Slightly advanced example of spawning an enemy
+    // We spawn the enemy with instance_create
+    spawnEnemy = instance_create(120, -25, obj_enemy_2);
+    // For every spawnEnemy (only 1, ever)
+    with (spawnEnemy){
+        // It has a Create step to populate 'enemyLight' value
+        with (enemyLight){
+            // For every enemyLight (only ever 1). Destroy it.
+            instance_destroy();
+        }
+        // In the scope of spawnEnemy, create enemyLight again, but blue!
+        enemyLight = instance_create(x,y, obj_lightBlue);
+        enemyLight.lightSize = 4;
+    }
+   spawnEnemy = instance_create(120, -25 - (25*1), obj_enemy_2);
+   spawnEnemy = instance_create(120, -25 - (25*2), obj_enemy_2);
+   spawnEnemy = instance_create(120, -25 - (25*3), obj_enemy_2);
+   spawnEnemy = instance_create(120, -25 - (25*4), obj_enemy_2);
+   spawnEnemy = instance_create(120, -25 - (25*5), obj_enemy_2);
+   
+    //instance_create(30, -25, obj_powerup_rate);
+    //instance_create(90, -25, obj_powerup_width);
+    spawnEnemy = instance_create(90, -25, obj_enemy_4);
+} 
+if (enemyCounter &gt; 990){
     instance_create(0,0,obj_waveMenu);
     instance_destroy();
 }

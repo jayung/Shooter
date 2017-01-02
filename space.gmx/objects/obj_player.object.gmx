@@ -183,6 +183,7 @@ if (global.isTouching == 1)
     } else if (lasorCounter == 0 &amp;&amp; lasorType == 3){
         newlasor = instance_create(charX + charWidth, charY - lasorHeightOffset, obj_missle);
         newlasor.xDiff = 0;
+        lasorCounter = lasorFireRate;
     }
 } else {
     /*

@@ -55,7 +55,7 @@ global.comboMultAmount = 1;
 // Draw the combo multiplier
 draw_set_font(fnt_gameFont);
 draw_set_colour(c_aqua);
-draw_text(250, 0, "Combo: " + string(global.comboMultiply));
+draw_text(230, 0, "Combo: " + string(global.comboMultiply));
 </string>
           </argument>
         </arguments>

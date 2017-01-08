@@ -44,6 +44,22 @@ with (light1){
 
 image_xscale *= width;
 y = 0;
+
+
+
+// RGB of the light, 
+tRed = obj_player.tRed;
+tGreen = obj_player.tGreen;
+tBlue = obj_player.tBlue;
+
+image_blend = make_color_rgb(other.tRed, other.tGreen, other.tBlue);
+with (light1) {
+        tRed = other.tRed;
+        tBlue = other.tBlue;
+        tGreen = other.tGreen;
+        image_blend = make_color_rgb(tRed, tGreen, tBlue);
+        //make_colour_hsv(other.tRed, other.tBlue, other.tGreen);
+    }
 </string>
           </argument>
         </arguments>

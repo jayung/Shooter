@@ -130,7 +130,8 @@ enemyLight.y = y + (sprite_height/2);
 
 // Check health
 if (Health &lt;= 0){
-    global.playerScore += enemyScore;
+    global.playerScore += enemyScore * global.comboMultiply;
+    
     instance_destroy();
 }
 // Fire the lasor if...
@@ -174,6 +175,14 @@ if (y &gt; 500){
             <kind>1</kind>
             <string>Health -= obj_missle.damage;
 with instance_place(x, y, obj_missle) {
+    if (tRed == other.tRed){
+    if (tBlue == other.tBlue){
+    if (tGreen == other.tGreen){
+        global.comboCounter = 100;
+        global.comboMultiply += global.comboMultAmount;        
+    }
+    }
+    }
     instance_destroy();
 }
 
@@ -201,6 +210,14 @@ with instance_place(x, y, obj_missle) {
             <kind>1</kind>
             <string>Health -= obj_lasor1.damage;
 with instance_place(x, y, obj_lasor1) {
+    if (tRed == other.tRed){
+    if (tBlue == other.tBlue){
+    if (tGreen == other.tGreen){
+        global.comboCounter = 100;
+        global.comboMultiply += global.comboMultAmount;
+    }
+    }
+    }
                 instance_destroy();
 }
 </string>
@@ -227,6 +244,16 @@ with instance_place(x, y, obj_lasor1) {
             <kind>1</kind>
             <string>Health -= obj_lasor2.damage;
 with instance_place(x, y, obj_lasor2) {
+    if (tRed == other.tRed){
+    if (tBlue == other.tBlue){
+    if (tGreen == other.tGreen){
+        global.comboCounter = 100;
+        global.comboMultiply += global.comboMultAmount;
+    }
+    }
+    }
+    
+    
  //               instance_destroy();
 }
 

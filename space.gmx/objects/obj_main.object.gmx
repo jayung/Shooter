@@ -34,6 +34,10 @@ charWidth = 11; //half of sprite width
 
 // We create our player object
 instance_create(0, 0, obj_player);
+// We create our combo object to display our current combo
+instance_create(288, 32, obj_combo); //back
+instance_create(289, 134, obj_comboFront); //front
+
 // We create a sound buffer object. This object will play our background music
 // But also handle our beats per minute values. Used to pulsate colors of lighting
 // This object has a global variable that obj_control for lights needs

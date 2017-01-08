@@ -130,7 +130,7 @@ enemyLight.y = y + (sprite_height/2);
 
 // Check health
 if (Health &lt;= 0){
-    global.playerScore += enemyScore;
+    global.playerScore += enemyScore * global.comboMultiply;
     instance_destroy();
 }
 // Fire the lasor if...
@@ -175,6 +175,15 @@ if (y &gt; 500){
             <string>//Health -= obj_lasor1.damage;
 with instance_place(x, y, obj_missle) {
 show_debug_message(string(    "Rocket Lasor hitting large enemy " + string((damage)) + " damage "   ));
+// Check if the colors match to keep the combo multiplier going
+    if (tRed == other.tRed){
+    if (tBlue == other.tBlue){
+    if (tGreen == other.tGreen){
+        global.comboCounter = 100;
+        global.comboMultiply += global.comboMultAmount;
+    }
+    }
+    }
  
                 other.Health -= (damage);
                 instance_destroy();
@@ -205,7 +214,16 @@ show_debug_message(string(    "Rocket Lasor hitting large enemy " + string((dama
             <string>//Health -= obj_lasor1.damage;
 with instance_place(x, y, obj_lasor1) {
 show_debug_message(string(    "Scatter Lasor hitting large enemy " + string((damage * 0.1)) + " damage "   ));
- 
+ // Check if the colors match to keep the combo multiplier going
+    if (tRed == other.tRed){
+    if (tBlue == other.tBlue){
+    if (tGreen == other.tGreen){
+        global.comboCounter = 100;
+        global.comboMultiply += global.comboMultAmount;
+    }
+    }
+    }
+
                 other.Health -= (damage * 0.1);
                 instance_destroy();
 }
@@ -235,7 +253,16 @@ show_debug_message(string(    "Scatter Lasor hitting large enemy " + string((dam
             <string>//Health -= obj_lasor1.damage;
 with instance_place(x, y, obj_lasor2) {
 show_debug_message(string(    "Scatter Lasor hitting large enemy " + string((damage * 0.1)) + " damage "   ));
- 
+// Check if the colors match to keep the combo multiplier going
+    if (tRed == other.tRed){
+    if (tBlue == other.tBlue){
+    if (tGreen == other.tGreen){
+        global.comboCounter = 100;
+        global.comboMultiply += global.comboMultAmount;
+    }
+    }
+    }
+    
                 other.Health -= (damage * 0.1);
                // instance_destroy();
 }

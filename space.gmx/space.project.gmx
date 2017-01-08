@@ -36,6 +36,10 @@
         <sprite>sprites\spr_redRocket</sprite>
         <sprite>sprites\spr_greenRocket</sprite>
       </sprites>
+      <sprites name="combo box">
+        <sprite>sprites\spr_comboPixel</sprite>
+        <sprite>sprites\spr_comboBack</sprite>
+      </sprites>
     </sprites>
     <sprites name="lasor">
       <sprite>sprites\spr_lasor1</sprite>
@@ -129,6 +133,10 @@
         <object>objects\obj_redRocket</object>
         <object>objects\obj_blueRocket</object>
         <object>objects\obj_greenRocket</object>
+      </objects>
+      <objects name="comboBox">
+        <object>objects\obj_comboFront</object>
+        <object>objects\obj_combo</object>
       </objects>
     </objects>
   </objects>

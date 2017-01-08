@@ -87,10 +87,12 @@
       <object>objects\obj_enemy_2</object>
       <object>objects\obj_enemy_lasor1</object>
       <object>objects\obj_enemy_3</object>
+      <object>objects\obj_enemy_pather</object>
     </objects>
     <objects name="Wave">
       <object>objects\obj_wave_1</object>
       <object>objects\obj_waveController</object>
+      <object>objects\obj_wave_3</object>
       <object>objects\obj_wave_2</object>
       <object>objects\obj_waveMenu</object>
     </objects>

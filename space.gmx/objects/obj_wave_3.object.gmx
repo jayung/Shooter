@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Enemy counter
-//enemyCounter = 0; // how long the game has gone on dictates what enemy spawns
+            <string>/// Enemy Counter
+enemyCounter = 0;
 
 </string>
           </argument>
@@ -50,14 +50,25 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.waveCounter == 0){
+            <string>///Jon's wave
 
-} else if (global.waveCounter == 1){
-    instance_create(0,0,obj_wave_3);
-    global.waveCounter = 0;
-} else  if (global.waveCounter == 2){
-    instance_create(0,0,obj_wave_2);
-    global.waveCounter = 0;
+enemyCounter += 1; //Counter goes up
+
+var spawnEnemy;
+
+//if (enemyCounter % 60) == 0 {
+  //  spawnEnemy = instance_create(120, -1 * sprite_height, obj_enemy_2);
+//}
+
+if (enemyCounter == 30) {
+    spawnEnemy = instance_create(0, 0, obj_enemy_pather);
+    ds_list_add(spawnEnemy.pointsX, 0, 74 , 148, 222, 295);
+    ds_list_add(spawnEnemy.pointsY, 0, 95, 0, 95, 0);
+    
+    spawnEnemy = instance_create(295, 0, obj_enemy_pather);
+    ds_list_add(spawnEnemy.pointsX, 295, 222, 148, 74, 0);
+    ds_list_add(spawnEnemy.pointsY, 0, 95, 0, 95, 0);
+    
 }
 </string>
           </argument>
